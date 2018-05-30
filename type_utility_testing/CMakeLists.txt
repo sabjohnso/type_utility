@@ -1,0 +1,10 @@
+macro( type_utility_add_simple_test  name )
+  add_executable( ${name}_test ${name}_test.cpp )
+  add_test( ${name} ${name}_test )
+endmacro( type_utility_add_simple_test  name )
+
+type_utility_add_simple_test( type )
+type_utility_add_simple_test( type1 )
+type_utility_add_simple_test( type_sequence )
+
+

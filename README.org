@@ -1,0 +1,8 @@
+#+TITLE: Type Utilitiy
+
+* Status
+  Not suitable for prodution use or otherwise. Very early development prototype code.
+
+
+* Overview
+  Tools for working with types in modern C++

@@ -1,0 +1,20 @@
+#ifndef CONFIG_HPP_INCLUDED_1756798575518483850
+#define CONFIG_HPP_INCLUDED_1756798575518483850 1
+
+#define TYPE_UTILITY_NAMESPACE ${TYPE_UTILITY_NAMESPACE}
+
+namespace TYPE_UTILITY_NAMESPACE
+{
+  namespace Config
+  {
+
+    constexpr int major_version = ${TYPE_UTILITY_MAJOR};
+    constexpr int minor_version = ${TYPE_UTILITY_MINOR};
+    constexpr int update = ${TYPE_UTILITY_UPDATE};
+    constexpr char type_utility_namespace[] = "${TYPE_UTILITY_NAMESPACE}";
+    constexpr bool RTTI_used = ${TYPE_UTILITY_RTTI_USED};
+    
+    
+  } // end of namespace Config
+}
+#endif // !defined CONFIG_HPP_INCLUDED_1756798575518483850
