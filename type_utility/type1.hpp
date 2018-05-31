@@ -8,7 +8,7 @@
 #include <type_utility/type.hpp>
 
 
-namespace TYPE_UTILITY_NAMESPACE
+namespace TypeUtility
 {
 
   namespace Core
@@ -57,6 +57,6 @@ namespace TYPE_UTILITY_NAMESPACE
     }
     
   } // end of namespace Core
-} // end of namespace TYPE_UTILITY_NAMESPACE
+} // end of namespace TypeUtility
 
 #endif // !defined TYPE1_HPP_INCLUDED_680272572858653006

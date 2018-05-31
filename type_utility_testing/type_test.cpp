@@ -16,7 +16,7 @@
 //
 #include <type_utility_testing/test_macros.hpp>
 
-using namespace TYPE_UTILITY_NAMESPACE::Core;
+using namespace TypeUtility::Core;
 
 
 constexpr auto cosine = []( auto x ){ return std::cos( x ); };

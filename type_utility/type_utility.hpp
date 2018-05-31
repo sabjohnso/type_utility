@@ -11,7 +11,7 @@
 
 
 
-namespace TYPE_UTILITY_NAMESPACE
+namespace TypeUtility
 {
 
   using Core::Type;
@@ -24,6 +24,6 @@ namespace TYPE_UTILITY_NAMESPACE
   
   
   
-} // end of namespace TYPE_UTILITY_NAMESPACE
+} // end of namespace TypeUtility
 
 #endif // !defined TYPE_UTILITY_HPP_INCLUDED_1323111970257335075

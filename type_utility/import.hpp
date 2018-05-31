@@ -13,7 +13,7 @@
 //
 #include <type_utility/config.hpp>
 
-namespace TYPE_UTILITY_NAMESPACE
+namespace TypeUtility
 {
   namespace Core
   {
@@ -102,7 +102,7 @@ namespace TYPE_UTILITY_NAMESPACE
 
     
   } // end of namespace Core  
-} // end of namespace TYPE_UTILITY_NAMESPACE
+} // end of namespace TypeUtility
 
 
 

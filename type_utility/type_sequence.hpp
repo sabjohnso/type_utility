@@ -9,7 +9,7 @@
 #include <type_utility/type1.hpp>
 
 
-namespace TYPE_UTILITY_NAMESPACE
+namespace TypeUtility
 {
   namespace Core
   {
@@ -141,6 +141,6 @@ namespace TYPE_UTILITY_NAMESPACE
     
     
   } // end of namespace Core
-} // end of namespace TYPE_UTILITY_NAMESPACE
+} // end of namespace TypeUtility
 
 #endif // !defined TYPE_SEQUENCE_HPP_INCLUDED_921095977076239931

@@ -1,7 +1,7 @@
 #ifndef BASE_TYPES_HPP_INCLUDED_2173693085049882071
 #define BASE_TYPES_HPP_INCLUDED_2173693085049882071 1
 
-namespace TYPE_UTILITY_NAMESPACE
+namespace TypeUtility
 {
   namespace Core
   {
@@ -19,5 +19,6 @@ namespace TYPE_UTILITY_NAMESPACE
     
   } // end of namespace Core
 } // end of namespace TYPE_UTILITY_NAMESPACE
+
 
 #endif // !defined BASE_TYPES_HPP_INCLUDED_2173693085049882071
