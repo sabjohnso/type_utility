@@ -6,5 +6,6 @@ endmacro( type_utility_add_simple_test  name )
 type_utility_add_simple_test( type )
 type_utility_add_simple_test( type1 )
 type_utility_add_simple_test( type_sequence )
+type_utility_add_simple_test( base_types )
 
 

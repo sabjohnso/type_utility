@@ -14,7 +14,7 @@ namespace TypeUtility
   namespace Core
   {
 
-    struct No_type{};
+    struct No_type{ using type = No_type; };
     
     template< typename ... Ts >
     struct Count_types;
@@ -70,6 +70,9 @@ namespace TypeUtility
     nth_type(){ return type<typename Nth_type<n,Ts...>::type>; }
 
 
+
+
+
     template< typename T, typename ... Ts >
     struct Find_type
     {
@@ -91,16 +94,38 @@ namespace TypeUtility
 	
     }; // end of struct Find_type
 
-    template<typename ... >
-    struct First_pred;
+
+    
+    template< typename Pred, typename ... Ts >
+    struct Sat;
+
+    template< template< typename ... > class Pred >
+    struct Sat<Type1<Pred>> : false_type{};
 
     template< template< typename ... > class Pred, typename T, typename ... Ts >
-    struct First_pred<Type1<Pred>,T,Ts...>
-      : conditional_t<Pred<T>::value, Type<T>, First_pred<Type1<Pred>, Ts... >>{};
-    
+    struct Sat<Type1<Pred>, T, Ts ... >
+      : conditional_t< Pred<T>::value, true_type, Sat<Type1<Pred>,Ts...>>{};
+
+
+
+    template< typename ... >
+    struct First_sat;
+
+    template< template< typename ... > class Pred, typename T, typename ... Ts >
+    struct First_sat<Type1<Pred>, T, Ts ...>
+      : conditional_t<Pred<T>::value,Type<T>,First_sat<Type1<Pred>,Ts...>>{};
+
     template< template< typename ... > class Pred >
-    struct First_pred<Type1<Pred>>
-      : Type<No_type>{};
+    struct First_sat<Type1<Pred>> : No_type {};
+
+
+    
+
+
+
+    
+
+    
     
     template< typename ... Ts >
     struct Type_sequence
@@ -127,10 +152,37 @@ namespace TypeUtility
 	return Find_type<T,Ts...>::value;
       }
 
-      template< typename Pred >
+      /** Return true if any of the types satisfy the predicate, otherwise false
+       */
+      template< template< typename ... > class Pred >
+      static constexpr bool
+      sat(){
+	return Sat<Type1<Pred>,Ts...>::value;
+      }
+
+      /** Return true if any of the types satisfy the predicate, otherwise false
+       */
+      template< template< typename ... > class Pred >
+      static constexpr bool
+      sat( Type1<Pred> ){
+	return Sat<Type1<Pred>,Ts...>::value;
+      }
+
+      
+      template< template< typename  ... > class Pred >
       static constexpr auto
-      first_pred(){
-	
+      first_sat(){
+	static_assert( sat<Pred>(), "Expected at least one type to satisfy Pred" );
+	return type<typename First_sat<Type1<Pred>,Ts ...>::type>;
+      }
+
+      
+      
+      template< template< typename  ... > class Pred >
+      static constexpr auto
+      first_sat( Type1<Pred> ){ 
+	static_assert( sat<Pred>(), "Expected at least one type to satisfy Pred" );
+	return type<typename First_sat<Type1<Pred>,Ts ...>::type>;
       }
       
 
