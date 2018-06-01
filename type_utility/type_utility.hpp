@@ -16,11 +16,22 @@ namespace TypeUtility
 
   using Core::Type;
   using Core::type;
+  using Core::type_transform;
+  using Core::type_pure;
+  using Core::type_apply;
+  using Core::type_bind;
+  using Core::type_join;
 
+  
   using Core::Type1;
   using Core::type1;
 
   using Core::Type_sequence;
+
+
+  using Core::Int;
+  using Core::UInt;
+  using Core::Float;
   
   
   

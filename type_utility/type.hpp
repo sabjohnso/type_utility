@@ -449,7 +449,7 @@ namespace TypeUtility
     }
 
 
-    /** Given function on plane values and a type proxy, return a type proxy */
+    /** Given function on plane values and a type proxy, return a type proxy */    
     template< typename F, typename T >
     constexpr auto
     type_transform( F, Type<T> ){
