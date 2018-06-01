@@ -3,6 +3,8 @@
 //
 #include <type_traits>
 #include <cmath>
+#include <string>
+#include <sstream>
 
 
 //
@@ -21,6 +23,16 @@ using namespace TypeUtility::Core;
 
 constexpr auto cosine = []( auto x ){ return std::cos( x ); };
 
+template< typename T >
+std::string
+string_repr( const T& arg ){
+  std::stringstream ss;
+  ss << arg;
+  return ss.str();
+}
+
+
+
 /** Test the type proxy class */
 struct TypeTest
 {
@@ -28,6 +40,7 @@ struct TypeTest
     construction_and_value_test();
     comparison_test();
     abstraction_test();
+    print_test();
   }
 
   /** Test construction from type proxies 
@@ -72,6 +85,13 @@ struct TypeTest
     TYPE_UTILITY_STATIC_TEST( type_join( type<Type<int>> ) == type<int> );
 
   }
+
+  void
+  print_test(){
+    TYPE_UTILITY_TEST( accum,  string_repr( type<char> ) == "char" );
+  }
+
+  
   operator int() const { return accum; }
   int accum;
 }; // end of struct TypeTest

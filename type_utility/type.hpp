@@ -489,6 +489,33 @@ namespace TypeUtility
       return type<T>;
     }
 
+
+
+
+
+#define TYPE_UTILITY_FORCE_SEMICOLON() static_assert( true, "" )
+#define TYPE_UTILITY_QUOTE_AUX( ... ) #__VA_ARGS__
+#define TYPE_UTILITY_QUOTE( ... ) TYPE_UTILITY_QUOTE_AUX( __VA_ARGS__ )
+#define TYPE_UTILITY_PRINTABLE_TYPE( name )	\
+    template< typename Stream >			\
+    Stream&					\
+    operator <<( Stream& os, Type<name> ){	\
+      os << TYPE_UTILITY_QUOTE( name );		\
+      return os;				\
+    } TYPE_UTILITY_FORCE_SEMICOLON()
+    
+    TYPE_UTILITY_PRINTABLE_TYPE( char );
+
+
+#undef TYPE_UTILITY_FORCE_SEMICOLON
+#undef TYPE_UTILITY_QUOTE_AUX
+#undef TYPE_UTILITY_QUOTE
+#undef TYPE_UTILITY_PRINTABLE_TYPE
+    
+    
+
+    
+
     
     
   } // end of namespace Core

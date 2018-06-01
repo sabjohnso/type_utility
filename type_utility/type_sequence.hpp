@@ -190,7 +190,9 @@ namespace TypeUtility
 
     template< typename ... Ts >
     constexpr Type_sequence<Ts...> types{};
+
     
+       
     
   } // end of namespace Core
 } // end of namespace TypeUtility

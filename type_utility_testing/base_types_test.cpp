@@ -17,43 +17,43 @@ struct Base_types_test
 {
   Base_types_test() : accum( 0 ) {
     
-    TYPE_UTILITY_STATIC_TEST( type<Int16>.size() == 2 );
-    TYPE_UTILITY_STATIC_TEST( type<Int32>.size() == 4 );
-    TYPE_UTILITY_STATIC_TEST( type<Int64>.size() == 8 );
-    TYPE_UTILITY_STATIC_TEST( type<Int16>.issigned());
-    TYPE_UTILITY_STATIC_TEST( type<Int32>.issigned());
-    TYPE_UTILITY_STATIC_TEST( type<Int64>.issigned());
-    TYPE_UTILITY_STATIC_TEST( type<Int16>.isintegral());
-    TYPE_UTILITY_STATIC_TEST( type<Int32>.isintegral());
-    TYPE_UTILITY_STATIC_TEST( type<Int64>.isintegral());
-    TYPE_UTILITY_STATIC_TEST( type<Int16>.isarithmetic());
-    TYPE_UTILITY_STATIC_TEST( type<Int32>.isarithmetic());
-    TYPE_UTILITY_STATIC_TEST( type<Int64>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<Int<16>>.size() == 2 );
+    TYPE_UTILITY_STATIC_TEST( type<Int<32>>.size() == 4 );
+    TYPE_UTILITY_STATIC_TEST( type<Int<64>>.size() == 8 );
+    TYPE_UTILITY_STATIC_TEST( type<Int<16>>.issigned());
+    TYPE_UTILITY_STATIC_TEST( type<Int<32>>.issigned());
+    TYPE_UTILITY_STATIC_TEST( type<Int<64>>.issigned());
+    TYPE_UTILITY_STATIC_TEST( type<Int<16>>.isintegral());
+    TYPE_UTILITY_STATIC_TEST( type<Int<32>>.isintegral());
+    TYPE_UTILITY_STATIC_TEST( type<Int<64>>.isintegral());
+    TYPE_UTILITY_STATIC_TEST( type<Int<16>>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<Int<32>>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<Int<64>>.isarithmetic());
 
 
-    TYPE_UTILITY_STATIC_TEST( type<UInt16>.size() == 2 );
-    TYPE_UTILITY_STATIC_TEST( type<UInt32>.size() == 4 );
-    TYPE_UTILITY_STATIC_TEST( type<UInt64>.size() == 8 );
-    TYPE_UTILITY_STATIC_TEST( type<UInt16>.isunsigned());
-    TYPE_UTILITY_STATIC_TEST( type<UInt32>.isunsigned());
-    TYPE_UTILITY_STATIC_TEST( type<UInt64>.isunsigned());
-    TYPE_UTILITY_STATIC_TEST( type<UInt16>.isintegral());
-    TYPE_UTILITY_STATIC_TEST( type<UInt32>.isintegral());
-    TYPE_UTILITY_STATIC_TEST( type<UInt64>.isintegral());
-    TYPE_UTILITY_STATIC_TEST( type<UInt16>.isarithmetic());
-    TYPE_UTILITY_STATIC_TEST( type<UInt32>.isarithmetic());
-    TYPE_UTILITY_STATIC_TEST( type<UInt64>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<16>>.size() == 2 );
+    TYPE_UTILITY_STATIC_TEST( type<UInt<32>>.size() == 4 );
+    TYPE_UTILITY_STATIC_TEST( type<UInt<64>>.size() == 8 );
+    TYPE_UTILITY_STATIC_TEST( type<UInt<16>>.isunsigned());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<32>>.isunsigned());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<64>>.isunsigned());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<16>>.isintegral());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<32>>.isintegral());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<64>>.isintegral());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<16>>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<32>>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<UInt<64>>.isarithmetic());
     
        
-    TYPE_UTILITY_STATIC_TEST( type<Float32>.size() == 4 );
-    TYPE_UTILITY_STATIC_TEST( type<Float64>.size() == 8 );
-    TYPE_UTILITY_STATIC_TEST( type<Float128>.size() == 16 );
-    TYPE_UTILITY_STATIC_TEST( type<Float32>.isfloating_point());
-    TYPE_UTILITY_STATIC_TEST( type<Float64>.isfloating_point());
-    TYPE_UTILITY_STATIC_TEST( type<Float128>.isfloating_point());
-    TYPE_UTILITY_STATIC_TEST( type<Float32>.isarithmetic());
-    TYPE_UTILITY_STATIC_TEST( type<Float64>.isarithmetic());
-    TYPE_UTILITY_STATIC_TEST( type<Float128>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<Float<32>>.size() == 4 );
+    TYPE_UTILITY_STATIC_TEST( type<Float<64>>.size() == 8 );
+    TYPE_UTILITY_STATIC_TEST( type<Float<128>>.size() == 16 );
+    TYPE_UTILITY_STATIC_TEST( type<Float<32>>.isfloating_point());
+    TYPE_UTILITY_STATIC_TEST( type<Float<64>>.isfloating_point());
+    TYPE_UTILITY_STATIC_TEST( type<Float<128>>.isfloating_point());
+    TYPE_UTILITY_STATIC_TEST( type<Float<32>>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<Float<64>>.isarithmetic());
+    TYPE_UTILITY_STATIC_TEST( type<Float<128>>.isarithmetic());
 
 
 
