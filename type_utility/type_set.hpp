@@ -36,8 +36,8 @@ namespace TypeUtility
 
     template< bool test, typename Pass, typename Fail >
     constexpr auto
-    cond( Pass, Fail ){
-      return conditional_t<test, Pass, Fail>{};
+    cond( Pass p, Fail f){
+      return  conditional_t<test, Pass, Fail >{};
     }
 
     template< typename ... Ts, typename T >

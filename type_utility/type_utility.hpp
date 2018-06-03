@@ -57,6 +57,35 @@ namespace TypeUtility
   using Core::Type_sequence_bind;
   using Core::Type_sequence_join;
 
+
+
+  //
+  // ... type sets
+  //
+  using Core::Type_set;
+
+
+  //
+  // ... integers
+  //
+  using Core::integer;
+  using Core::integers;
+
+
+
+  //
+  // ... integer sets
+  //
+  using Core::Integer_set;
+  using Core::integer_set;
+  using Core::integer_set_add;
+  using Core::integer_set_remove;
+  using Core::integer_set_union;
+  using Core::integer_set_intersection;
+  using Core::integer_set_difference;
+  using Core::integer_set_symmetric_difference;
+  
+
   
   
 

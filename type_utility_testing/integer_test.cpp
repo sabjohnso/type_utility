@@ -40,9 +40,57 @@ struct Integer_test
     TYPE_UTILITY_TEST( accum, integer<int,6> / integer<int,2> == integer<int,3> );
     TYPE_UTILITY_TEST( accum, integer<int,3> % integer<int,2> == integer<int,1> );
 
-    TYPE_UTILITY_TEST( accum, string_repr( integer<short,2> ) == "[2:short]" );
-    TYPE_UTILITY_TEST( accum, string_repr( integer<int,1> ) == "[1:int]" );
-    TYPE_UTILITY_TEST( accum, string_repr( integer<size_t, 10> ) == "[10:unsigned long]" );
+    TYPE_UTILITY_STATIC_TEST( integers<int,0> == integers<int,0> );
+    TYPE_UTILITY_STATIC_TEST( integers<int,1,2,3> == integers<int,1,2,3> );
+    TYPE_UTILITY_STATIC_TEST( ! (integers<int,0,2,3> == integers<int,1,2,3> ));
+    
+    TYPE_UTILITY_STATIC_TEST( ! ismember( integers<int>, integer<int,0> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( integers<int,0>, integer<int,0> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( integers<int,0,1>, integer<int,0>));
+    TYPE_UTILITY_STATIC_TEST( ismember( integers<int,0,1>, integer<int,1>));
+
+    TYPE_UTILITY_STATIC_TEST( ismember( integer_set<int,0,1>, integer<int,0> ));
+    TYPE_UTILITY_STATIC_TEST( issubset( integer_set<int,0,1>, integer_set<int> ));
+
+    TYPE_UTILITY_STATIC_TEST( ismember( integer_set<int,0,1,2,3,4>, integer<int,0> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( integer_set<int,0,1,2,3,4>, integer<int,1> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( integer_set<int,0,1,2,3,4>, integer<int,2> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( integer_set<int,0,1,2,3,4>, integer<int,3> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( integer_set<int,0,1,2,3,4>, integer<int,4> ));
+
+    
+    TYPE_UTILITY_STATIC_TEST( issubset( integer_set<int,0,1>, integer_set<int,0> ));
+    
+    TYPE_UTILITY_STATIC_TEST( integer_set<int> == integer_set<int> );
+
+    
+    TYPE_UTILITY_STATIC_TEST( integer_set<int,0> == integer_set<int,0> );
+
+    TYPE_UTILITY_STATIC_TEST( issubset( integer_set<int,0>, integer_set<int> ));
+    TYPE_UTILITY_STATIC_TEST( issubset( integer_set<int,0>, integer_set<int,0> ));
+    TYPE_UTILITY_STATIC_TEST( integer_set<int,0,1> == integer_set<int,0,1> );
+    TYPE_UTILITY_STATIC_TEST( integer_set<int,0,1,2> == integer_set<int,0,1,2> );
+    TYPE_UTILITY_STATIC_TEST( integer_set<int,0,1,2> == integer_set<int,1,2,0> );
+    TYPE_UTILITY_STATIC_TEST( integer_set<int,0,1,2> == integer_set<int,2,0,1> );
+    TYPE_UTILITY_STATIC_TEST( !( integer_set<int,0,1,2> == integer_set<int,2,0> ));
+    TYPE_UTILITY_STATIC_TEST( integer_set<int,0,1,2> != integer_set<int,2,0> );
+
+
+    TYPE_UTILITY_STATIC_TEST(
+      integer_set_intersection( integer_set<int,0,1>, integer_set<int,1,2> ) ==
+      integer_set<int,1> );
+
+    TYPE_UTILITY_STATIC_TEST(
+      integer_set_difference( integer_set<int,0,1,2>, integer_set<int,1,2> ) ==
+      integer_set<int,0> );
+
+    TYPE_UTILITY_STATIC_TEST(
+      integer_set_remove( integer_set<int,0,1,2>, integer<int,2> ) ==
+      integer_set<int,0,1> );
+			       
+    
+    
+
 
   }
   operator int() const { return accum; }

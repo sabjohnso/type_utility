@@ -24,6 +24,7 @@ namespace TypeUtility
     using std::conditional_t;
 
     using std::integral_constant;
+    using std::integer_sequence;
     using std::false_type;
     using std::true_type;
     
