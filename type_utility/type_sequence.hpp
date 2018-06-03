@@ -226,6 +226,14 @@ namespace TypeUtility
     operator ==( Type_sequence<T,Ts...>, Type_sequence<U,Us...> ){
       return false;
     }
+
+    template< typename T, typename ... Ts >
+    constexpr bool
+    ismember( Type_sequence< Ts ...>, Type<T> ){
+      return Type_sequence< Ts ...>::ismember( type<T> );
+    }
+    
+      
     
 
     template< typename T, typename ... Ts >

@@ -17,6 +17,13 @@ namespace TypeUtility
     template< typename ... Ts >
     struct Type_set : Type_sequence<Ts ... >{};
 
+
+    template< typename T, typename ... Ts >
+    constexpr bool
+    ismember( Type_set<Ts...>, Type<T> ){
+      return Type_set<Ts...>::ismember( type<T> );
+    }
+
     template< typename ... Ts >
     constexpr auto
     validate_type_set(){

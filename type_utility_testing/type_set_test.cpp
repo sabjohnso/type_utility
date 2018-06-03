@@ -16,6 +16,9 @@ struct Type_set_test
     using namespace TypeUtility::Core;
 
     TYPE_UTILITY_STATIC_TEST( ! type_set<>.ismember( type<int> ));
+    TYPE_UTILITY_STATIC_TEST( type_set<int>.ismember( type<int> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( type_set<short,int>, type<int> ));
+    TYPE_UTILITY_STATIC_TEST( ismember( type_set<int, short>, type<int> ));
       
   }
   operator int() const { return accum; }

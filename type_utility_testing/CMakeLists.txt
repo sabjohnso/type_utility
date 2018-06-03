@@ -8,5 +8,7 @@ type_utility_add_simple_test( type1 )
 type_utility_add_simple_test( type_sequence )
 type_utility_add_simple_test( type_set )
 type_utility_add_simple_test( base_types )
+type_utility_add_simple_test( integer )
+
 
 
