@@ -456,6 +456,12 @@ namespace TypeUtility
       return type<decay_t<result_of_t<F(T)>>>;
     }
 
+    template< typename F, typename T >
+    constexpr auto
+    type_transform( Type<T> ){
+      return type<decay_t<result_of_t<F(T)>>>;
+    }
+
     /** Given a plane value, return a type proxy */
     template< typename T >
     constexpr auto

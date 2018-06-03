@@ -20,6 +20,7 @@ struct Type_sequence_test
     has_type_test();
     find_type_test();
     sequence_test();
+    list_test();
   }
   
   void
@@ -99,6 +100,33 @@ struct Type_sequence_test
     TYPE_UTILITY_TEST( accum, types<char,short,int,long>.at<3>() == type<long> );
   }
 
+  void
+  list_test(){
+
+    constexpr auto char_types = type_list( type<char>, type<char16_t>, type<char32_t> );
+    TYPE_UTILITY_STATIC_TEST( char_types == types<char,char16_t,char32_t> );
+    TYPE_UTILITY_STATIC_TEST( length( char_types ) == 3 );
+    TYPE_UTILITY_STATIC_TEST( head( char_types ) == type<char> );
+    TYPE_UTILITY_STATIC_TEST( tail( char_types ) == types<char16_t,char32_t> );
+    TYPE_UTILITY_STATIC_TEST( reverse( char_types ) == types<char32_t,char16_t,char> );
+    TYPE_UTILITY_STATIC_TEST( 
+      append( char_types, char_types ) ==
+      types<char,char16_t,char32_t,char,char16_t,char32_t> );
+
+    constexpr auto to_int = []( auto x ){ return int( x ); };
+    
+    TYPE_UTILITY_STATIC_TEST( type_sequence_transform<decltype(to_int)>( types<> ) == types<> );
+    TYPE_UTILITY_STATIC_TEST( type_sequence_transform( to_int, types<> ) == types<> );
+    TYPE_UTILITY_STATIC_TEST( type_sequence_transform( to_int, char_types ) == types<int,int,int> );
+    TYPE_UTILITY_STATIC_TEST( type_sequence_pure( to_int ) == types<decay_t<decltype(to_int)>> );
+    TYPE_UTILITY_STATIC_TEST(
+      type_sequence_apply(
+	type_sequence_pure( to_int ),
+	char_types ) == types<int,int,int> );
+    TYPE_UTILITY_STATIC_TEST(
+      type_sequence_bind( char_types, []( auto x ){ return type_sequence_pure( x ); }) ==
+      char_types );
+  }
   
   
   

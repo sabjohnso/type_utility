@@ -14,6 +14,16 @@
 namespace TypeUtility
 {
 
+  //
+  // ... base types
+  //
+  using Core::Int;
+  using Core::UInt;
+  using Core::Float;
+
+  //
+  // ... type proxies
+  //  
   using Core::Type;
   using Core::type;
   using Core::type_transform;
@@ -22,16 +32,36 @@ namespace TypeUtility
   using Core::type_bind;
   using Core::type_join;
 
-  
+
+  //
+  // ... template proxies
+  //
   using Core::Type1;
   using Core::type1;
 
+
+  //
+  // ... type sequences
+  //
   using Core::Type_sequence;
+  using Core::cons;
+  using Core::head;
+  using Core::tail;
+  using Core::length;
+  using Core::rappend;
+  using Core::append;
+  using Core::reverse;
+  using Core::type_sequence_transform;
+  using Core::Type_sequence_pure;
+  using Core::Type_sequence_apply;
+  using Core::Type_sequence_bind;
+  using Core::Type_sequence_join;
+
+  
+  
 
 
-  using Core::Int;
-  using Core::UInt;
-  using Core::Float;
+
   
   
   

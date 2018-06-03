@@ -55,6 +55,22 @@ namespace TypeUtility
     struct Has_type<T,U,Ts...> : Has_type<T,Ts...> {};
 
 
+
+    template< typename ... Ts >
+    struct Are_unique;
+
+    template<>
+    struct Are_unique<> : false_type {};
+
+    template< typename T, typename ... Ts >
+    struct Are_unique<T,Ts...>
+      : conditional_t< Has_type<T,Ts...>::value,
+		       false_type,
+		       Are_unique<Ts...>>{};
+    
+    
+
+
     template< size_t n, typename ... Ts >
     struct Nth_type;
 
@@ -106,8 +122,6 @@ namespace TypeUtility
     struct Sat<Type1<Pred>, T, Ts ... >
       : conditional_t< Pred<T>::value, true_type, Sat<Type1<Pred>,Ts...>>{};
 
-
-
     template< typename ... >
     struct First_sat;
 
@@ -117,16 +131,7 @@ namespace TypeUtility
 
     template< template< typename ... > class Pred >
     struct First_sat<Type1<Pred>> : No_type {};
-
-
-    
-
-
-
-    
-
-    
-    
+        
     template< typename ... Ts >
     struct Type_sequence
     {
@@ -141,13 +146,30 @@ namespace TypeUtility
 	return nth_type<index, Ts...>();
       }
 
+      template< size_t index >
+      static constexpr auto
+      at( integral_constant<size_t, index> ){
+	return at<index>();
+      }
+
       template< typename T >
       static constexpr bool
       ismember(){ return Has_type<T,Ts...>::value; }
 
       template< typename T >
+      static constexpr bool
+      ismember( Type<T> ){ return ismember<T>();  }
+
+      template< typename T >
       static constexpr size_t
       find(){
+	static_assert( Has_type<T,Ts...>::value, "Expected type subject type to be present" );
+	return Find_type<T,Ts...>::value;
+      }
+
+      template< typename T >
+      static constexpr size_t
+      find( Type<T> ){
 	static_assert( Has_type<T,Ts...>::value, "Expected type subject type to be present" );
 	return Find_type<T,Ts...>::value;
       }
@@ -175,9 +197,7 @@ namespace TypeUtility
 	static_assert( sat<Pred>(), "Expected at least one type to satisfy Pred" );
 	return type<typename First_sat<Type1<Pred>,Ts ...>::type>;
       }
-
-      
-      
+           
       template< template< typename  ... > class Pred >
       static constexpr auto
       first_sat( Type1<Pred> ){ 
@@ -185,14 +205,161 @@ namespace TypeUtility
 	return type<typename First_sat<Type1<Pred>,Ts ...>::type>;
       }
       
-
     }; // end of struct  Type_sequence
 
+    
     template< typename ... Ts >
     constexpr Type_sequence<Ts...> types{};
 
+
+    constexpr bool
+    operator ==( Type_sequence<>, Type_sequence<> ){ return true; }
+
+    template< typename T, typename ... Ts, typename ... Us >
+    constexpr bool
+    operator ==( Type_sequence<T,Ts...>, Type_sequence<T,Us...> ){
+      return types<Ts...> == types<Us...>;
+    }
     
-       
+    template< typename T, typename ... Ts, typename U, typename ... Us >
+    constexpr bool
+    operator ==( Type_sequence<T,Ts...>, Type_sequence<U,Us...> ){
+      return false;
+    }
+    
+
+    template< typename T, typename ... Ts >
+    constexpr auto
+    cons( Type<T>, Type_sequence<Ts ...> ){
+      return types<T,Ts...>;
+    }
+
+    template< typename ... Ts >
+    constexpr size_t
+    length( Type_sequence<Ts...> ){
+      return types<Ts...>.size();
+    }
+
+    template< typename T, typename ... Ts, typename ... Us >
+    constexpr auto
+    rappend( Type_sequence<T, Ts...>, Type_sequence<Us ...> ){
+      return rappend( types<Ts...>, types<T,Us...> );
+    }
+    
+    template< typename ... Us >
+    constexpr auto
+    rappend( Type_sequence<>, Type_sequence<Us ...> ){ return types<Us...>; }
+    
+    template< typename ... Ts >
+    constexpr auto
+    reverse( Type_sequence<Ts ...> ){ return rappend( types<Ts...>, types<> ); }
+
+    template< typename ... Ts, typename ... Us >
+    constexpr auto
+    append( Type_sequence<Ts...>, Type_sequence<Us...> ){
+      return rappend( reverse( types<Ts...> ), types<Us...> );
+    }
+
+    template< typename T, typename ... Ts >
+    constexpr auto
+    head( Type_sequence<T,Ts...> ){ return type<T>; }
+
+    template< typename T, typename ... Ts >
+    constexpr auto
+    tail( Type_sequence<T,Ts...> ){ return types<Ts...>; }
+
+    constexpr auto
+    tail( Type_sequence<> ){ return types<>; }
+
+    template< typename F, typename T, typename ... Ts >
+    constexpr auto
+    type_sequence_transform( F,  Type_sequence< T, Ts ... > ){
+      return cons( type_transform<decay_t<F>>( type<T> ), type_sequence_transform<F>( types<Ts...> )); }
+
+    template< typename F, typename T, typename ... Ts >
+    constexpr auto
+    type_sequence_transform( Type_sequence< T, Ts ... > ){
+      return cons( type_transform<F>( type<T> ), type_sequence_transform<F>( types<Ts...> )); }
+
+    
+    
+    template< typename F >
+    constexpr auto
+    type_sequence_transform( F, Type_sequence<> ){ return types<>; }
+
+    template< typename F >
+    constexpr auto
+    type_sequence_transform( Type_sequence<> ){ return types<>; }
+
+    template< typename T >
+    constexpr auto
+    type_sequence_pure( T&& ){ return types<decay_t<T>>; }
+
+    template< typename F, typename ... Fs,  typename ... Ts >
+    constexpr auto
+    type_sequence_apply( Type_sequence<F, Fs ...>, Type_sequence<Ts ...> ){
+      return append( type_sequence_transform<F>( types<Ts ... > ),
+		     type_sequence_apply( types<Fs...>, types<Ts...> ));
+    }
+
+
+
+
+	
+    template< typename ... Ts >
+    constexpr auto
+    type_sequence_apply( Type_sequence<>, Type_sequence<Ts ...> ){
+      return types<>;
+    }
+
+    template< typename Ts, typename ... Tss >
+    constexpr auto
+    type_sequence_join( Type_sequence<Ts, Tss ... > ){
+      return append( Ts{}, type_sequence_join( types<Tss...> ));
+    }
+
+    template< typename ... Ts, typename F >
+    constexpr auto
+    type_sequence_bind( Type_sequence<Ts...>, F ){
+      return type_sequence_bind<F>( types<Ts...> );
+    }
+
+    template< typename F, typename T, typename ... Ts >
+    constexpr auto
+    type_sequence_bind( Type_sequence<T, Ts...> ){
+      return append(
+	result_of_t<F(T)>{},
+	type_sequence_bind<F>( types<Ts...> ));
+    }
+
+    template< typename F >
+    constexpr auto
+    type_sequence_bind( F, Type_sequence<> ){
+      return types<>;
+    }
+
+    template< typename F >
+    constexpr auto
+    type_sequence_bind( Type_sequence<> ){
+      return types<>;
+    }
+
+
+
+
+
+    
+     
+    constexpr auto
+    type_list(){ return types<>; }
+
+    template< typename T, typename ... Ts >
+    constexpr auto
+    type_list( Type<T>, Type<Ts> ... ){
+      return cons( type<T>, type_list( type<Ts> ... ));
+    }
+    
+    
     
   } // end of namespace Core
 } // end of namespace TypeUtility
