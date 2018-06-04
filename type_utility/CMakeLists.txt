@@ -16,7 +16,9 @@ install( FILES
   type.hpp
   type1.hpp
   type_sequence.hpp
+  type_set.hpp
   base_types.hpp
+  integer.hpp
   type_utility.hpp
   DESTINATION ${TYPE_UTILITY_INSTALL_INCLUDE_DIR})
 
