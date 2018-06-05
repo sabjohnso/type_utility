@@ -5,9 +5,11 @@
 // ... Type Utility header files
 //
 #include <type_utility/type.hpp>
-#include <type_utiliy/type1.hpp>
+#include <type_utility/type1.hpp>
 #include <type_utility/type_sequence.hpp>
-#include <base_types.hpp>
+#include <type_utility/type_set.hpp>
+#include <type_utility/integer.hpp>
+#include <type_utility/base_types.hpp>
 
 
 
@@ -52,10 +54,10 @@ namespace TypeUtility
   using Core::append;
   using Core::reverse;
   using Core::type_sequence_transform;
-  using Core::Type_sequence_pure;
-  using Core::Type_sequence_apply;
-  using Core::Type_sequence_bind;
-  using Core::Type_sequence_join;
+  using Core::type_sequence_pure;
+  using Core::type_sequence_apply;
+  using Core::type_sequence_bind;
+  using Core::type_sequence_join;
 
 
 
@@ -68,6 +70,7 @@ namespace TypeUtility
   //
   // ... integers
   //
+  using Core::Integer;
   using Core::integer;
   using Core::integers;
 

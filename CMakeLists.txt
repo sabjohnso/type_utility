@@ -32,7 +32,7 @@ endif( TYPE_UTILITY_USE_VERSION_NAMESPACE )
 
 if( NOT TYPE_UTILITY_INSTALL_INCLUDE_DIR )
   set( TYPE_UTILITY_INSTALL_INCLUDE_DIR
-    include/type_utility-${TYPE_UTILITY_MAJOR}.${TYPE_UTILITY_MINOR}
+    include/type_utility
     CACHE PATH "Path for the installation of the type utility header files" )
 endif( NOT TYPE_UTILITY_INSTALL_INCLUDE_DIR )
 
