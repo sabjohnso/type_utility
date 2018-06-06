@@ -6,6 +6,7 @@
 //
 #include <utility>
 #include <type_traits>
+#include <new>
 
 
 //
@@ -18,6 +19,8 @@ namespace TypeUtility
   namespace Core
   {
 
+    using std::align_val_t;
+    using std::size_t;
     using std::forward;
     using std::decay_t;
     using std::result_of_t;
@@ -94,7 +97,6 @@ namespace TypeUtility
     using std::is_swappable;
     using std::is_nothrow_swappable_with;
     using std::is_nothrow_swappable;
-
 
     using std::is_invocable;
     using std::is_invocable_r;

@@ -10,6 +10,8 @@
 #include <type_utility/type_set.hpp>
 #include <type_utility/integer.hpp>
 #include <type_utility/base_types.hpp>
+#include <type_utility/crtp.hp>
+#include <type_utility/base.hpp>
 
 
 

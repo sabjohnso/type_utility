@@ -19,6 +19,8 @@ install( FILES
   type_set.hpp
   base_types.hpp
   integer.hpp
+  undeletable.hpp
+  crtp.hpp
   type_utility.hpp
   DESTINATION ${TYPE_UTILITY_INSTALL_INCLUDE_DIR})
 
