@@ -10,8 +10,8 @@
 #include <type_utility/type_set.hpp>
 #include <type_utility/integer.hpp>
 #include <type_utility/base_types.hpp>
-#include <type_utility/crtp.hp>
-#include <type_utility/base.hpp>
+#include <type_utility/crtp.hpp>
+#include <type_utility/undeletable.hpp>
 
 
 
@@ -91,7 +91,12 @@ namespace TypeUtility
   using Core::integer_set_symmetric_difference;
   
 
-  
+
+  //
+  // ... CRTP
+  //
+  using Core::Base_delete_protection;
+  using Core::CRTP;
   
 
 
