@@ -38,8 +38,6 @@ namespace TypeUtility
       constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
       constexpr operator T&& () && { return static_cast<T&&>( *this ); }
       operator T& () & { return static_cast<T&>( *this ); }
-
-      virtual ~CRTP(){}
     };
     
 
