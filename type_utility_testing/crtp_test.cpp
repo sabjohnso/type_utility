@@ -19,7 +19,7 @@
 using namespace TypeUtility::Core;
 
 template< typename T >
-class Show : public CRTP<T>{
+class Show : public CRTP<Show,T>{
 public:
   template< typename Stream >
   friend Stream&

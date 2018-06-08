@@ -31,8 +31,15 @@ namespace TypeUtility
      * unspecified behavior, but may also prevent lagitimate use.  The second uses
      * public virtual destructor, as is costomary, but it will prevent use as a
      * base for compile time computation.
+     *
+     * This class requires a template template parameter that us used to eliminate
+     * abiguity over a common base when multiple CRTP bases are used. Presumably, 
+     * the template is the base, but it does not need to be, because the parameter
+     * is not used for any purposes other than disambiguation. Using this class as
+     * a virtual base prevents compile time code
      */
-    template< typename T, Base_delete_protection protection = Base_delete_protection::optimism >
+    template< template< typename ... > class K, typename T,
+	      Base_delete_protection protection = Base_delete_protection::optimism >
     class CRTP{
     public:
       constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
@@ -45,19 +52,20 @@ namespace TypeUtility
     /** 
      * @brief A base class for CRTP base classes, inheriting from Undeletable
      */
-    template< typename T >
-    class CRTP<T,Base_delete_protection::undeletable> : Undeletable {
+    template< template< typename ... > class K, typename T >
+    class CRTP<K,T,Base_delete_protection::undeletable> : Undeletable {
     public:
       constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
       constexpr operator T&& () && { return static_cast<T&&>( *this ); }
       operator T& () & { return static_cast<T&>( *this ); }
     };
 
+    
     /**
      * @brief A base class for CRTP base classes with a virtual destructor
      */
-    template< typename T >
-    class CRTP<T,Base_delete_protection::virtual_destructor>{
+    template< template< typename ... > class K, typename T >
+    class CRTP<K,T,Base_delete_protection::virtual_destructor>{
     public:
       constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
       constexpr operator T&& () && { return static_cast<T&&>( *this ); }
