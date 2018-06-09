@@ -76,6 +76,7 @@ namespace TypeUtility
   using Core::integer;
   using Core::integers;
 
+  using Core::generate_indices;
 
 
   //

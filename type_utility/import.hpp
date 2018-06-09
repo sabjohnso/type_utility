@@ -28,6 +28,7 @@ namespace TypeUtility
 
     using std::integral_constant;
     using std::integer_sequence;
+    using std::index_sequence;
     using std::false_type;
     using std::true_type;
     

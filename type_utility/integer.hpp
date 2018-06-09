@@ -271,8 +271,27 @@ namespace TypeUtility
 
 
 
+    template< size_t N, size_t ... Indices >
+    struct Generate_indices;
 
+    template< size_t ... Indices >
+    struct Generate_indices<0,Indices...> : Type<index_sequence<Indices...>>{};
+
+    template< size_t N, size_t ... Indices >
+    struct Generate_indices : Generate_indices<N-1,N-1,Indices ...> {};
     
+    template< size_t N >
+    constexpr auto
+    generate_indices(){
+      return typename Generate_indices<N>::type{};
+    }
+    
+
+    template< typename ... Ts >
+    constexpr auto
+    generate_indices(){
+      return generate_indices<count_types<Ts...>()>();
+    }
     
     
   } // end of namespace Cre

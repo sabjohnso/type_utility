@@ -2,7 +2,7 @@
 // ... Type Utility header files
 //
 #include <type_utility/integer.hpp>
-
+#include <type_utility/type_utility.hpp>
 
 //
 // ... Testing header files
@@ -99,10 +99,54 @@ struct Integer_test
 
 
 
+/** Test the generation of an index sequence */
+struct Generate_indices_test
+{
+  Generate_indices_test() : accum( 0 ) {
+    from_integer_test();
+    from_types_test();
+  }
+
+  void
+  from_integer_test(){
+    using namespace TypeUtility;
+    using std::index_sequence;
+
+    TYPE_UTILITY_STATIC_TEST( type<decltype(generate_indices<0>())> == type<index_sequence<>> );
+    TYPE_UTILITY_STATIC_TEST( type<decltype(generate_indices<1>())> == type<index_sequence<0>> );
+    TYPE_UTILITY_STATIC_TEST( type<decltype(generate_indices<2>())> == type<index_sequence<0,1>> );
+    TYPE_UTILITY_STATIC_TEST( type<decltype(generate_indices<3>())> == type<index_sequence<0,1,2>> );
+
+    TYPE_UTILITY_TEST( accum, type<decltype(generate_indices<0>())> == type<index_sequence<>> );
+    TYPE_UTILITY_TEST( accum, type<decltype(generate_indices<1>())> == type<index_sequence<0>> );
+    TYPE_UTILITY_TEST( accum, type<decltype(generate_indices<2>())> == type<index_sequence<0,1>> );
+    TYPE_UTILITY_TEST( accum, type<decltype(generate_indices<3>())> == type<index_sequence<0,1,2>> );
+    
+  }
+  
+  void
+  from_types_test(){
+    using namespace TypeUtility;
+    using std::index_sequence;
+    
+    TYPE_UTILITY_STATIC_TEST( type<decltype(generate_indices<>())> == type<index_sequence<>> );
+    TYPE_UTILITY_STATIC_TEST( type<decltype(generate_indices<int>())> == type<index_sequence<0>> );
+    TYPE_UTILITY_STATIC_TEST( type<decltype(generate_indices<int,long>())> ==
+			      type<index_sequence<0,1>> );
+    
+  }
+    
+  operator int() const { return accum; }
+  int accum;
+}; // end of struct Generate_indices_test
+
+
+
 int
 main( int, char** )
 {
   int accum = 0;
   accum += Integer_test();
+  accum += Generate_indices_test();
   return accum;
 }

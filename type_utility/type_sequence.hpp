@@ -14,6 +14,8 @@ namespace TypeUtility
   namespace Core
   {
 
+    
+
     struct No_type{ using type = No_type; };
     
     template< typename ... Ts >
