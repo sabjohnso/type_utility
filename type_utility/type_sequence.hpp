@@ -368,8 +368,30 @@ namespace TypeUtility
     type_list( Type<T>, Type<Ts> ... ){
       return cons( type<T>, type_list( type<Ts> ... ));
     }
+
+    template< typename Stream, typename T>
+    Stream &
+    operator <<( Stream& os, Type_sequence<T> ){
+      os << type<T>;
+      return os;
+    }
+
+    template< typename Stream, typename T, typename U, typename ... Vs >
+    Stream &
+    operator <<( Stream& os, Type_sequence<T,U,Vs...> ){
+      os << type<T> << ',' << types<U,Vs...>;
+      return os;
+    }
     
-    
+    template< typename Stream, template< typename ... > class K, typename ... Ts >
+    Stream&
+    operator <<( Stream& os, Type<K<Ts...>> ){
+      os << type<Type1<K>> << '<' << types<Ts...> << '>';
+      return os;
+    }
+
+
+
     
   } // end of namespace Core
 } // end of namespace TypeUtility

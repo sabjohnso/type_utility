@@ -50,6 +50,8 @@ namespace TypeUtility
     }
 
 
+
+
     template< template< typename ... > class K, typename ... Ts >
     Type1<K>
     type1_pure( Type<K<Ts ...>> ){
