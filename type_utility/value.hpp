@@ -39,7 +39,8 @@ namespace TypeUtility
       get() && { return move(value); }
 
       reference
-      get() & { return value; }
+      mutable_get(){ return value; }
+	
 
     private:
       
