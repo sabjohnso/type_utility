@@ -22,6 +22,7 @@ install( FILES
   undeletable.hpp
   crtp.hpp
   type_utility.hpp
+  value.hpp
   DESTINATION ${TYPE_UTILITY_INSTALL_INCLUDE_DIR})
 
 
