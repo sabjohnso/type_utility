@@ -10,6 +10,4 @@ type_utility_add_simple_test( type_set )
 type_utility_add_simple_test( base_types )
 type_utility_add_simple_test( integer )
 type_utility_add_simple_test( crtp )
-
-
-
+type_utility_add_simple_test( value )

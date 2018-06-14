@@ -21,6 +21,7 @@ namespace TypeUtility
 
     using std::align_val_t;
     using std::size_t;
+    using std::move;
     using std::forward;
     using std::decay_t;
     using std::result_of_t;

@@ -12,6 +12,7 @@
 #include <type_utility/base_types.hpp>
 #include <type_utility/crtp.hpp>
 #include <type_utility/undeletable.hpp>
+#include <type_utility/value.hpp>
 
 
 
@@ -100,7 +101,10 @@ namespace TypeUtility
   using Core::CRTP;
   
 
-
+  //
+  // ... Value
+  //
+  using Core::Value;
 
   
   
