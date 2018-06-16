@@ -55,6 +55,28 @@ namespace TypeUtility
     drop( Integer_sequence<I, x, xs ... >, Nat<N> ){
       return drop( integers<I,xs...>, nat<N-1> );
     }
+
+
+
+
+    constexpr auto
+    drop( index_sequence<>, Nat<0> ){
+      return index_sequence<>();
+    }
+
+    template< size_t x, size_t ... xs >
+    constexpr auto
+    drop( index_sequence<x,xs...>, Nat<0> ){
+      return index_sequence<xs...>();
+    }
+    
+    template< size_t x, size_t ... xs, size_t N >
+    constexpr auto
+    drop( index_sequence<x,xs...>, Nat<N> ){
+      return drop( index_sequence<xs...>(), nat<N> );
+    }
+    
+    
 	
 
     
