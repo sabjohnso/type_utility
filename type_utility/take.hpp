@@ -89,11 +89,42 @@ namespace TypeUtility
 
     }; // end of class Take_integers
 
+
+    
     template< typename I, I ... xs, size_t N >
     constexpr auto
     take( Integer_sequence<I,xs...>, Nat<N> ){
       return Take_integers::call( integers<I,xs...>, nat<N> );
     }
+
+
+    template< size_t ... xs >
+    constexpr auto
+    index_to_integer_sequence( index_sequence<xs ...> ){
+      return integers<size_t,xs...>;
+    }
+
+    template< size_t ... xs >
+    constexpr auto
+    integer_to_index_sequence( Integer_sequence<size_t,xs...> ){
+      return index_sequence<xs...>();
+    }
+
+    template< size_t ... xs, size_t N >
+    constexpr auto
+    take( index_sequence<xs...>, Nat<N> ){
+      return integer_to_index_sequence( take( integers<size_t,xs...>, nat<N>));
+    }
+    
+
+
+
+
+
+
+
+
+    
     
   } // end of namespace Core
 } // end of namespace TypeUtility
