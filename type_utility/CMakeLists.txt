@@ -13,6 +13,8 @@ configure_file( config.hpp.in config.hpp )
 install( FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
   import.hpp
+  drop.hpp
+  take.hpp
   type.hpp
   type1.hpp
   type_sequence.hpp
