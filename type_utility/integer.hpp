@@ -406,6 +406,12 @@ namespace TypeUtility
       return generate_indices<count_types<Ts...>()>();
     }
 
+    template< size_t index, size_t ... indices >
+    constexpr auto
+    rotate( index_sequence< index, indices...> ){
+      return index_sequence<indices..., index>();
+    }
+
     
     
     

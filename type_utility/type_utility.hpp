@@ -100,7 +100,7 @@ namespace TypeUtility
   using Core::integer_set_difference;
   using Core::integer_set_symmetric_difference;
   
-
+  using Core::rotate;
 
   //
   // ... CRTP

@@ -141,6 +141,20 @@ struct Generate_indices_test
 }; // end of struct Generate_indices_test
 
 
+/** Test rotation of indices */
+struct Rotate_test
+{
+  Rotate_test() : accum( 0 ) {
+    using namespace TypeUtility::Core;
+    TYPE_UTILITY_STATIC_TEST( rotate( generate_indices<3>()) == index_sequence<1,2,0>());
+    TYPE_UTILITY_STATIC_TEST( rotate( rotate( rotate( generate_indices<3>()))) ==
+			      index_sequence<0,1,2>());
+  }
+  operator int() const { return accum; }
+  int accum;
+}; // end of struct Rotate_test
+
+
 
 int
 main( int, char** )
