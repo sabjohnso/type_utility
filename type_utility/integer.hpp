@@ -71,7 +71,13 @@ namespace TypeUtility
       
 
       
-
+      template< typename Stream >
+      friend Stream&
+      operator <<( Stream& os, Nat ){
+	os << "nat<" << N << ">";
+	return os;
+      }
+	  
     }; // end of class
     
       
@@ -411,6 +417,25 @@ namespace TypeUtility
     rotate( index_sequence< index, indices...> ){
       return index_sequence<indices..., index>();
     }
+
+
+
+    template< typename I, I ... xs >
+    constexpr size_t
+    length( Integer_sequence<I,xs...> ){
+      return count_types<decltype(xs)...>();
+    }
+
+    
+    template< size_t ... xs >
+    constexpr size_t
+    length( index_sequence<xs...> ){
+      return count_types<decltype(xs)...>();
+    }
+
+    
+
+    
 
     
     

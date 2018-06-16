@@ -67,12 +67,17 @@ namespace TypeUtility
     template< size_t x, size_t ... xs >
     constexpr auto
     drop( index_sequence<x,xs...>, Nat<0> ){
-      return index_sequence<xs...>();
+      return index_sequence<x,xs...>();
     }
     
     template< size_t x, size_t ... xs, size_t N >
     constexpr auto
     drop( index_sequence<x,xs...>, Nat<N> ){
+      static_assert(
+	length( index_sequence<x,xs...>()) - N ==
+	length(drop( index_sequence<xs...>(), nat<N-1> )));
+	
+	
       return drop( index_sequence<xs...>(), nat<N-1> );
     }
     
