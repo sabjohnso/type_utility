@@ -13,6 +13,8 @@
 #include <type_utility/crtp.hpp>
 #include <type_utility/undeletable.hpp>
 #include <type_utility/value.hpp>
+#include <type_utility/take.hpp>
+#include <type_utility/drop.hpp>
 
 
 
@@ -49,6 +51,7 @@ namespace TypeUtility
   // ... type sequences
   //
   using Core::Type_sequence;
+  using Core::types;
   using Core::cons;
   using Core::head;
   using Core::tail;
@@ -63,6 +66,9 @@ namespace TypeUtility
   using Core::type_sequence_join;
 
 
+  using Core::take;
+  using Core::drop;
+
 
   //
   // ... type sets
@@ -73,12 +79,14 @@ namespace TypeUtility
   //
   // ... integers
   //
+  using Core::Nat;
+  using Core::nat;
   using Core::Integer;
   using Core::integer;
+  using Core::integer_sequence;
   using Core::integers;
 
   using Core::generate_indices;
-
 
   //
   // ... integer sets
@@ -105,6 +113,7 @@ namespace TypeUtility
   // ... Value
   //
   using Core::Value;
+
 
   
   

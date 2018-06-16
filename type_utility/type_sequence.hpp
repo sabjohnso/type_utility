@@ -13,9 +13,7 @@ namespace TypeUtility
 {
   namespace Core
   {
-
-    
-
+   
     struct No_type{ using type = No_type; };
     
     template< typename ... Ts >
@@ -223,11 +221,19 @@ namespace TypeUtility
       return types<Ts...> == types<Us...>;
     }
     
-    template< typename T, typename ... Ts, typename U, typename ... Us >
+    template< typename T, typename ... Ts,  typename ... Us >
     constexpr bool
-    operator ==( Type_sequence<T,Ts...>, Type_sequence<U,Us...> ){
-      return false;
-    }
+    operator ==( Type_sequence<T,Ts...>, Type_sequence<Us...> ){ return false; }
+
+    template< typename ... Ts,  typename U, typename ... Us >
+    constexpr bool
+    operator ==( Type_sequence<Ts...>, Type_sequence<Us...> ){ return false; }
+
+
+    
+
+
+    
 
     template< typename T, typename ... Ts >
     constexpr bool
@@ -312,9 +318,6 @@ namespace TypeUtility
 		     type_sequence_apply( types<Fs...>, types<Ts...> ));
     }
 
-
-
-
 	
     template< typename ... Ts >
     constexpr auto
@@ -357,7 +360,6 @@ namespace TypeUtility
 
 
 
-
     
      
     constexpr auto
@@ -389,6 +391,10 @@ namespace TypeUtility
       os << type<Type1<K>> << '<' << types<Ts...> << '>';
       return os;
     }
+
+
+
+
 
 
 

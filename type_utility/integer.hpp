@@ -13,7 +13,104 @@ namespace TypeUtility
 {
   namespace Core
   {
+    
+    
+    template< size_t N>
+    struct Nat{
 
+      static constexpr size_t value = N;
+
+      template< size_t M >
+      friend constexpr bool
+      operator <( const Nat&, const Nat<M>& ){ return N < M; }
+
+      template< size_t M >
+      friend constexpr bool
+      operator <=( const Nat&, const Nat<M>& ){ return N <= M; }
+
+      template< size_t M> 
+      friend constexpr bool
+      operator >( const Nat&, const Nat<M>& ){ return N > M; }
+
+      template< size_t M> 
+      friend constexpr bool
+      operator >=( const Nat&, const Nat<M>& ){ return N >= M; }
+
+      template< size_t M >
+      friend constexpr bool
+      operator ==( const Nat&, const Nat<M>& ){ return N == M; }
+
+      template< size_t M >
+      friend constexpr bool
+      operator !=( const Nat&, const Nat<M>& ){ return N != M; }
+
+
+      template< size_t M >
+      friend constexpr auto
+      operator +( const Nat&, const Nat<M>& ){ return Nat<N+M>(); }
+
+      
+      template< size_t M >
+      friend constexpr auto
+      operator -( const Nat&, const Nat<M>& ){
+	static_assert( N > M, "Underflow" );
+	return Nat<N-M>();
+      }
+
+      template< size_t M >
+      friend constexpr auto
+      operator *(const Nat&, const Nat<M>& ){ return Nat<N-M>(); }
+
+      template< size_t M >
+      friend constexpr auto
+      operator /( const Nat&, const Nat<M>& ){ return Nat<N/M>(); }
+
+      template< size_t M >
+      friend constexpr auto
+      operator %( const Nat&, const Nat<M>& ){ return Nat<N%M>(); }
+      
+
+      
+
+    }; // end of class
+    
+      
+    template<size_t N>
+    constexpr auto nat = Nat<N>{};
+
+
+
+    template< typename T, T ... xs >
+    struct Integer_sequence
+    {
+      using value_type = T;
+      static constexpr size_t extent = count_types<decltype(xs) ... >();
+      static constexpr T values [] = {xs ... };
+
+      constexpr
+      Integer_sequence(){}
+      
+      constexpr
+      Integer_sequence( integer_sequence<T,xs...> ){}
+
+      friend constexpr bool
+      operator ==( const Integer_sequence&, const Integer_sequence& ){ return true; }
+
+      template< T ... ys >
+      friend constexpr bool
+      operator ==( const Integer_sequence&, const Integer_sequence<T,ys...>& ){ return false; }
+
+      template< typename U >
+      friend constexpr bool
+      operator != ( const Integer_sequence&, const U& ){ return !( Integer_sequence() == U() ); }
+
+      
+
+    }; // end of struct Integer_sequence
+
+
+    
+    
     template< typename T, T x >
     using Integer = integral_constant<T,x>;
 
@@ -70,32 +167,45 @@ namespace TypeUtility
 
     
     template< typename T, T ... xs >
-    constexpr auto integers = integer_sequence<T,xs ...>{};
+    constexpr auto integers = Integer_sequence<T,xs ...>{};
 
 
     template< typename T, T x, T ... xs, T ... ys >
     constexpr bool
-    operator ==( integer_sequence<T,x,xs...>, integer_sequence<T,x,ys ... > ){
+    operator ==( const  integer_sequence<T,x,xs...>&, const integer_sequence<T,x,ys ... >& ){
       return integers<T,xs...> == integers<T,ys...>;
     }
 
     template< typename T, T x, T ... xs, T ... ys >
     constexpr bool
-    operator ==( integer_sequence<T,x,xs...>, integer_sequence<T,ys ... > ){
+    operator ==( const integer_sequence<T,x,xs...>&, const integer_sequence<T,ys ... >& ){
+      return false;
+    }
+
+    template< typename T, T ... xs, T y, T ... ys >
+    constexpr bool
+    operator ==( const integer_sequence<T,xs...>&, const integer_sequence<T,y,ys ... >& ){
       return false;
     }
 
 
     template< typename T >
     constexpr bool
-    operator ==( integer_sequence<T>, integer_sequence<T> ){
+    operator ==( const integer_sequence<T>&, const integer_sequence<T>& ){
       return true;
     }
+
+    template< typename T, T ... xs, T ... ys >
+    constexpr bool
+    operator !=( const integer_sequence<T, xs ...>&, const integer_sequence<T,ys...>& ){
+      return !( integer_sequence<T, xs ...>() ==  integer_sequence<T,ys...>());
+    }
+    
 
     
     template< typename T, T y >
     constexpr bool
-    ismember( integer_sequence<T>, integral_constant<T,y> ){
+    ismember( Integer_sequence<T>, integral_constant<T,y> ){
       return false;
     }
     
@@ -103,13 +213,13 @@ namespace TypeUtility
 
     template< typename T, T x, T ... xs >
     constexpr bool
-    ismember( integer_sequence<T,x, xs...>, integral_constant<T,x> ){
+    ismember( Integer_sequence<T,x, xs...>, integral_constant<T,x> ){
       return true;
     }
 
     template< typename T, T x, T ... xs, T y >
     constexpr bool
-    ismember( integer_sequence<T,x, xs...>, integral_constant<T,y> ){
+    ismember( Integer_sequence<T,x, xs...>, integral_constant<T,y> ){
       return ismember( integers<T,xs...>, integer<T,y> );
     }
 
@@ -127,8 +237,8 @@ namespace TypeUtility
 
     template< typename F, typename T, T ... xs >
     constexpr auto
-    integer_sequence_transform( F f, integer_sequence<T,xs...> ){
-      return integer_sequence<decay_t<result_of_t<F(T)>>, f(xs) ... >{};
+    integer_sequence_transform( F f, Integer_sequence<T,xs...> ){
+      return Integer_sequence<decay_t<result_of_t<F(T)>>, f(xs) ... >{};
     }
 
 
@@ -189,7 +299,10 @@ namespace TypeUtility
 
     template< typename T, T x, T ... xs, T ... ys, T ... zs >
     constexpr auto
-    integer_set_intersection_aux( Integer_set<T, x, xs ...>, Integer_set<T, ys ... >, Integer_set<T, zs ... > ){
+    integer_set_intersection_aux(
+      Integer_set<T, x, xs ...>,
+      Integer_set<T, ys ... >,
+      Integer_set<T, zs ... > ){
       return integer_set_intersection_aux(
 	integer_set<T,xs...>,
 	integer_set<T,ys...>,
@@ -292,6 +405,8 @@ namespace TypeUtility
     generate_indices(){
       return generate_indices<count_types<Ts...>()>();
     }
+
+    
     
     
   } // end of namespace Cre
