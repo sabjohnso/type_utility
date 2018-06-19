@@ -68,6 +68,7 @@ namespace TypeUtility
 
   using Core::take;
   using Core::drop;
+  using Core::select;
 
 
   //
