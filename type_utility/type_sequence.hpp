@@ -87,6 +87,10 @@ namespace TypeUtility
 
 
 
+    
+
+
+
 
 
     template< typename T, typename ... Ts >
@@ -357,9 +361,6 @@ namespace TypeUtility
       return types<>;
     }
 
-
-
-
     
      
     constexpr auto
@@ -393,11 +394,24 @@ namespace TypeUtility
     }
 
 
+    template< typename ... Ts >
+    constexpr auto
+    select( Type_sequence<Ts...>, index_sequence<> ){
+      return types<>;
+    }
+   
+    template< typename ... Ts, size_t index, size_t ... indices >
+    constexpr auto
+    select( Type_sequence<Ts...>, index_sequence<index, indices ...> ){
+      return cons( nth_type<index,Ts...>( ),
+		   select(types<Ts...>, index_sequence<indices...>()));
+    }
 
 
 
 
 
+    
     
   } // end of namespace Core
 } // end of namespace TypeUtility

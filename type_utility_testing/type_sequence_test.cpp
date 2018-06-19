@@ -21,6 +21,7 @@ struct Type_sequence_test
     find_type_test();
     sequence_test();
     list_test();
+    select_test();
   }
   
   void
@@ -126,6 +127,16 @@ struct Type_sequence_test
     TYPE_UTILITY_STATIC_TEST(
       type_sequence_bind( char_types, []( auto x ){ return type_sequence_pure( x ); }) ==
       char_types );
+  }
+
+  void
+  select_test(){
+    TYPE_UTILITY_STATIC_TEST(
+      select( types<short,int,long,long long>, index_sequence<0,2>()) == types<short,long> );
+
+    TYPE_UTILITY_TEST(
+      accum,
+      select( types<short,int,long,long long>, index_sequence<0,2>()) == types<short,long> );
   }
   
   
