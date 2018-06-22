@@ -117,6 +117,10 @@ namespace TypeUtility
 
 
   using Core::count_types;
+
+
+
+  using Core::operator<<;
   
   
 } // end of namespace TypeUtility
