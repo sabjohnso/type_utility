@@ -106,7 +106,6 @@ namespace TypeUtility
   //
   // ... CRTP
   //
-  using Core::Base_delete_protection;
   using Core::CRTP;
   
 

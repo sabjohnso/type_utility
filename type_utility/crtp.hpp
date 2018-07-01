@@ -12,68 +12,49 @@ namespace TypeUtility
   namespace Core
   {
 
-    enum class Base_delete_protection { optimism, undeletable, virtual_destructor };
 
     
     /**
-     * @brief A base class for CRTP base classes that just hopes for the best and
-     * ignores the issue of deleting a base class pointer.
+     * @brief A base class for CRTP base classes
      *
-     * @details This class provides type casts to subtypes as a base for CRTP bases.
-     * The majority of CRTP use is inconsistent with use cases where execution of the
-     * delete operator over a CRTP base pointer would be reasonable. As such, the default 
-     * behavior here is to just ignore the issue and expect uses of this class to
-     * be as intended.  This facilitates use of this class as a base for compile time 
-     * calculations.
-     * 
-     * However, stupid is as stupid does, so to alternative specializations are also
-     * provided.  The first includes an undeletable base, which prevents invokation of
-     * unspecified behavior, but may also prevent lagitimate use.  The second uses
-     * public virtual destructor, as is costomary, but it will prevent use as a
-     * base for compile time computation.
+     * @details This class implements the casts to the base class that
+     * are used with the Curiously Recurring Template Pattern (CRTP).  It 
+     * is intented as a base class for base classes using CRTP to eliminate
+     * the repetative reproduction of these cast operators. It should be noted
+     * that the casts are not to the direct subtype
      *
-     * This class requires a template template parameter that us used to eliminate
-     * abiguity over a common base when multiple CRTP bases are used. Presumably, 
-     * the template is the base, but it does not need to be, because the parameter
-     * is not used for any purposes other than disambiguation. Using this class as
-     * a virtual base prevents compile time code
+     * The destructor is protected and default to protect from deletion of pointers
+     * to this class and to allow use in compile-time calculations. 
+     *
+     * @tparam K - A template template parameter representing the CRTP base class
+     * whose specialization over T is the direct subtype of this class. This parameter
+     * is only used for disambiguation in cases where multiple CRTP base classes are
+     * use for a single target subtype. Conceivably, other templates could satisfy
+     * this requirement, but a better choice is not likely
+     *
+     * @tparam T - A type template parameter that is the target type of the casting
+     * operators.
      */
-    template< template< typename ... > class K, typename T,
-	      Base_delete_protection protection = Base_delete_protection::optimism >
+    template< template< typename ... > class K, typename T  >
     class CRTP{
     public:
+
       constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
       constexpr operator T&& () && { return static_cast<T&&>( *this ); }
       operator T& () & { return static_cast<T&>( *this ); }
-    };
+      
+    protected:
+
+      // Destructor is protected to only allow deletion from subtypes.  This
+      // destructor is intentionally NOT virtual to allow  use as a base class
+      // for compile time functionality.  Furthurmore, this class is not intended
+      // be held as a polymorphic pointer on which delete might be executed. Attempts,
+      // to delete a pointer to this base class indicate flawed understanding of
+      // this class and CRTP in general. 
+      ~CRTP() = default;
+      
+    }; // end of class CRTP
     
-
-
-    /** 
-     * @brief A base class for CRTP base classes, inheriting from Undeletable
-     */
-    template< template< typename ... > class K, typename T >
-    class CRTP<K,T,Base_delete_protection::undeletable> : Undeletable {
-    public:
-      constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
-      constexpr operator T&& () && { return static_cast<T&&>( *this ); }
-      operator T& () & { return static_cast<T&>( *this ); }
-    };
-
-    
-    /**
-     * @brief A base class for CRTP base classes with a virtual destructor
-     */
-    template< template< typename ... > class K, typename T >
-    class CRTP<K,T,Base_delete_protection::virtual_destructor>{
-    public:
-      constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
-      constexpr operator T&& () && { return static_cast<T&&>( *this ); }
-      operator T& () & { return static_cast<T&>( *this ); }
-
-      virtual ~CRTP(){}
-    };
-
     
     
   } // end of namespace Core
