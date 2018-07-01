@@ -42,15 +42,19 @@ namespace TypeUtility
       constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
       constexpr operator T&& () && { return static_cast<T&&>( *this ); }
       operator T& () & { return static_cast<T&>( *this ); }
+
+      
       
     protected:
+
 
       // Destructor is protected to only allow deletion from subtypes.  This
       // destructor is intentionally NOT virtual to allow  use as a base class
       // for compile time functionality.  Furthurmore, this class is not intended
       // be held as a polymorphic pointer on which delete might be executed. Attempts,
       // to delete a pointer to this base class indicate flawed understanding of
-      // this class and CRTP in general. 
+      // this class and CRTP in general.
+      CRTP()  = default;
       ~CRTP() = default;
       
     }; // end of class CRTP
