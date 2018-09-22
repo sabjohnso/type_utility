@@ -70,6 +70,8 @@ namespace TypeUtility
   using Core::drop;
   using Core::select;
 
+  using Core::nth_type;
+
 
   //
   // ... type sets
