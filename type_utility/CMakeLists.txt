@@ -18,9 +18,11 @@ install( FILES
   type.hpp
   type1.hpp
   type_sequence.hpp
+  type_sequence_utility.hpp
   type_set.hpp
   base_types.hpp
   integer.hpp
+  integer_set.hpp
   undeletable.hpp
   crtp.hpp
   type_utility.hpp
