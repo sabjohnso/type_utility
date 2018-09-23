@@ -9,6 +9,7 @@
 #include <type_utility/type_sequence.hpp>
 #include <type_utility/type_set.hpp>
 #include <type_utility/integer.hpp>
+#include <type_utility/integer_set.hpp>
 #include <type_utility/base_types.hpp>
 #include <type_utility/crtp.hpp>
 #include <type_utility/undeletable.hpp>
