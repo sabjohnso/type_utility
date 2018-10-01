@@ -4,37 +4,22 @@
 cmake_minimum_required( VERSION 3.8 )
 
 project( TYPE_UTILITY )
+set( TYPE_UTILITY_MAJOR 0)
+set( TYPE_UTILITY_MINOR 1)
+set( TYPE_UTILITY_UPDATE 0)
 
+set( TYPE_UTILITY_VERSION type_utility-${TYPE_UTILITY_MAJOR}.{TYPE_UTILITY_MINOR})
+set( TYPE_UTILITY_VERSION_UPDATE ${TYPE_UTILITY_VERSION}.${TYPE_UTILITY_UPDATE} )
 
-include( cmake/version.cmake )
 
 
 option( BUILD_TYPE_UTILITY_TESTING  "Build the type_utility  tests" ON )
-option( TYPE_UTILITY_USE_VERSION_NAMESPACE "Add the version to the type utility namespace" OFF )
 option( TYPE_UTILITY_USE_RTTI "Use runtime type information" ON )
-option( TYPE_UTILITY_ACTIVATE_VERSION_ON_INSTALLATION
-  "Link the unversioned include directory to this version." ON )
 option( BUILD_TYPE_UTILITY_DOCUMENTATION "Build the documentation" ON )
 
-set( TYPE_UTILITY_NAMESPACE TypeUtility
-  CACHE STRING "The top-level namespace to use for the type utility library" )
 
-
-string( CONCAT TYPE_UTILITY_VERSION
-  ${TYPE_UTILITY_MAJOR} "_" ${TYPE_UTILITY_MINOR} "_" ${TYPE_UTILITY_UPDATE})
-
-
-
-if( TYPE_UTILITY_USE_VERSION_NAMESPACE )
-  string(APPEND TYPE_UTILITY_NAMESPACE ${TYPE_UTILITY_VERSION})
-endif( TYPE_UTILITY_USE_VERSION_NAMESPACE )
-
-
-if( NOT TYPE_UTILITY_INSTALL_INCLUDE_DIR )
-  set( TYPE_UTILITY_INSTALL_INCLUDE_DIR
-    include/type_utility
-    CACHE PATH "Path for the installation of the type utility header files" )
-endif( NOT TYPE_UTILITY_INSTALL_INCLUDE_DIR )
+set( TYPE_UTILITY_INSTALL_INCLUDE_DIR include/type_utility
+  CACHE PATH "Path for the installation of the type utility header files" )
 
 
 include_directories( 
@@ -51,23 +36,17 @@ endif( BUILD_TYPE_UTILITY_TESTING )
 
 
 if( BUILD_TYPE_UTILITY_DOCUMENTATION )
-
-  
-  if( NOT TYPE_UTILITY_INSTALL_DOC_DIR )
-    set( TYPE_UTILITY_INSTALL_DOC_DIR
-      share/doc/type_utility-${TYPE_UTILITY_MAJOR}.${TYPE_UTILITY_MINOR}
-      CACHE PATH "Path for the installation of the type utility documentation" )
-  endif( NOT TYPE_UTILITY_INSTALL_DOC_DIR )
-
-  if( NOT TYPE_UTILITY_INSTALL_MAN_DIR )
-    set( TYPE_UTILITY_INSTALL_MAN_DIR
-      share
-      CACHE PATH "Path for the installation of the type utility manual pages" )
-  endif( NOT TYPE_UTILITY_INSTALL_MAN_DIR )
+  set( TYPE_UTILITY_INSTALL_DOC_DIR
+    share/doc/type_utility-${TYPE_UTILITY_MAJOR}.${TYPE_UTILITY_MINOR}
+    CACHE PATH "Path for the installation of the type utility documentation" )
   
 
+  set( TYPE_UTILITY_INSTALL_MAN_DIR
+    share
+    CACHE PATH "Path for the installation of the type utility manual pages" )
 
   
+
   find_package( Doxygen REQUIRED  )
   configure_file( Doxyfile.in Doxyfile )
   add_custom_command(

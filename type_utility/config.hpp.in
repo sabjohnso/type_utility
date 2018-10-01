@@ -7,7 +7,6 @@ namespace TypeUtility::Config
   constexpr int major_version = ${TYPE_UTILITY_MAJOR};
   constexpr int minor_version = ${TYPE_UTILITY_MINOR};
   constexpr int update = ${TYPE_UTILITY_UPDATE};
-  constexpr char type_utility_namespace[] = "${TYPE_UTILITY_NAMESPACE}";
   constexpr bool RTTI_used = ${TYPE_UTILITY_RTTI_USED};
     
     
