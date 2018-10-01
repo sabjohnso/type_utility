@@ -119,6 +119,7 @@ namespace TypeUtility
 
 
   using Core::count_types;
+  using Core::count_args;
 
 
 
