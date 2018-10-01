@@ -1,9 +1,19 @@
+#
+# ... Set the compilers
+#
+ifndef CC
+ CC = gcc
+endif
+
+ifndef CXX
+ CXX=g++
+endif
 
 TOPLEVEL_BUILD_DIRECTORY = ./build
-CC=gcc-7.3
-CXX=g++-7.3
+
 
 MAKEFILE = $(BUILD_DIRECTORY)/Makefile
+
 
 CMAKE_FLAGS_COMMON = \
   -DCMAKE_CXX_STANDARD=17 \
