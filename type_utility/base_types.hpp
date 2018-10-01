@@ -29,7 +29,7 @@ namespace TypeUtility
     
 
     using Signed_integer_types =
-      Type_sequence<short,int,long,long long>;
+      Type_sequence<char, short,  int, long, long long>;
 
     template< size_t size >
     using Int = typename decltype(
@@ -40,7 +40,7 @@ namespace TypeUtility
 
     
     using Unsigned_integer_types =
-      Type_sequence<unsigned short,unsigned, unsigned long, unsigned long long>;
+      Type_sequence<unsigned char, unsigned short,unsigned, unsigned long, unsigned long long>;
 
 
     template< size_t size >
