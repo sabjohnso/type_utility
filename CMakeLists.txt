@@ -3,30 +3,75 @@
 #
 cmake_minimum_required( VERSION 3.8 )
 
-project( TYPE_UTILITY )
-set( TYPE_UTILITY_MAJOR 0)
-set( TYPE_UTILITY_MINOR 1)
+set( TYPE_UTILITY_MAJOR  0)
+set( TYPE_UTILITY_MINOR  1)
 set( TYPE_UTILITY_UPDATE 0)
 
-set( TYPE_UTILITY_VERSION type_utility-${TYPE_UTILITY_MAJOR}.{TYPE_UTILITY_MINOR})
+
+project( TYPE_UTILITY
+  VERSION ${TYPE_UTILITY_MAJOR}.${TYPE_UTILITY_MINOR}
+  LANGUAGES CXX)
+
+
+
+set( TYPE_UTILITY_SUFFIX -${TYPE_UTILITY_MAJOR}.${TYPE_UTILITY_MINOR} )
+set( TYPE_UTILITY_VERSION type_utility-${TYPE_UTILITY_SUFFIX})
 set( TYPE_UTILITY_VERSION_UPDATE ${TYPE_UTILITY_VERSION}.${TYPE_UTILITY_UPDATE} )
 
 
-
+#
+# ... Build options
+#
 option( BUILD_TYPE_UTILITY_TESTING  "Build the type_utility  tests" ON )
 option( TYPE_UTILITY_USE_RTTI "Use runtime type information" ON )
 option( BUILD_TYPE_UTILITY_DOCUMENTATION "Build the documentation" ON )
+option( TYPE_UTILITY_INSTALL_VERSIONED "Make a version specific installation" ON )
 
 
-set( TYPE_UTILITY_INSTALL_INCLUDE_DIR include/type_utility
+#
+# ... Installation path info
+#
+
+set( TYPE_UTILITY_INSTALL_INCLUDE_DIR include
   CACHE PATH "Path for the installation of the type utility header files" )
 
+set( TYPE_UTILITY_INSTALL_LIBRARY_DIR lib/type_utility
+  CACHE PATH "Path for the installation of the type utility library files" )
 
-include_directories( 
-  ${TYPE_UTILITY_SOURCE_DIR}
-  ${TYPE_UTILITY_BINARY_DIR} )
+set( TYPE_UTILITY_INSTALL_EXEC_DIR bin
+  CACHE PATH "Path for the installation of type utility executables")
 
+if( TYPE_UTILITY_INSTALL_VERSIONED )
+  string( APPEND TYPE_UTILITY_INSTALL_INCLUDE_DIR /type_utility${TYPE_UTILITY_SUFFIX} )
+  string( APPEND TYPE_UTILITY_INSTALL_LIBRARY_DIR ${TYPE_UTILITY_SUFFIX})
+endif()
+
+
+#
+# ... Header library target
+#
+add_library(type_utility INTERFACE)
+
+target_include_directories(type_utility INTERFACE $<INSTALL_INTERFACE:${TYPE_UTILITY_INSTALL_INCLUDE_DIR}>)
+target_include_directories(type_utility INTERFACE $<BUILD_INTERFACE:${TYPE_UTILITY_SOURCE_DIR}>)
+target_include_directories(type_utility INTERFACE $<BUILD_INTERFACE:${TYPE_UTILITY_BINARY_DIR}>)
+
+
+install( TARGETS type_utility
+  EXPORT type_utility
+  DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR})
+
+install( EXPORT type_utility
+  DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR}
+  FILE type_utility.cmake )
+
+
+#
+# ... Walk the source tree
+#
 add_subdirectory( type_utility )
+
+
 
 if( BUILD_TYPE_UTILITY_TESTING )
   enable_testing()

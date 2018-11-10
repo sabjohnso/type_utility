@@ -9,6 +9,9 @@ endif()
 
 configure_file( config.hpp.in config.hpp )
 
+install( TARGETS ${TYPE_UTILITY_CONFIG_NAME} EXPORT type_utility
+  DESTINATION ${TYPE_UTILITY_INSTALL_EXEC_DIR})
+
 
 install( FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
@@ -27,6 +30,10 @@ install( FILES
   crtp.hpp
   type_utility.hpp
   value.hpp
-  DESTINATION ${TYPE_UTILITY_INSTALL_INCLUDE_DIR})
+  DESTINATION ${TYPE_UTILITY_INSTALL_INCLUDE_DIR}/type_utility )
 
+configure_file( type_utility-config.cmake.in type_utility-config.cmake)
 
+install( FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/type_utility-config.cmake
+  DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR} )
