@@ -1,0 +1,7 @@
+
+
+
+include(${CMAKE_INSTALL_PREFIX}/${TYPE_UTILITY_INSTALL_LIBRARY_DIR}/type_utility.cmake )
+
+
+
