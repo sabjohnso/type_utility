@@ -62,6 +62,7 @@ install( TARGETS type_utility
   DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR})
 
 install( EXPORT type_utility
+  NAMESPACE type_utility::
   DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR}
   FILE type_utility.cmake )
 
