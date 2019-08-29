@@ -12,8 +12,6 @@ namespace TypeUtility
   namespace Core
   {
 
-
-    
     /**
      * @brief A base class for CRTP base classes
      *
@@ -38,15 +36,23 @@ namespace TypeUtility
     template< template< typename ... > class K, typename T  >
     class CRTP{
     public:
-
+      
+      /**
+       * @brief Cast to a const reference of the subtype
+       */
       constexpr operator const T& () const & { return static_cast<const T&>( *this ); }
+      
+      /**
+       * @brief Cast to an rvalue reference of the subtype
+       */
       constexpr operator T&& () && { return static_cast<T&&>( *this ); }
+      
+      /**
+       * @brief Cast to a writable reference of the subtype
+       */
       operator T& () & { return static_cast<T&>( *this ); }
 
-      
-      
     protected:
-
 
       // Destructor is protected to only allow deletion from subtypes.  This
       // destructor is intentionally NOT virtual to allow  use as a base class

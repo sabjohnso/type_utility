@@ -25,7 +25,6 @@ CMAKE_FLAGS_COMMON = \
 .PHONY: all
 all: release
 
-
 #
 # ... Release
 #
@@ -48,8 +47,6 @@ $(BUILD_DIRECTORY_RELEASE):
 install: release
 	cd $(BUILD_DIRECTORY_RELEASE) && make install
 
-
-
 #
 # ... Release with debug information
 #
@@ -66,9 +63,6 @@ $(CMAKE_CACHE_RELWITHDEBINFO): $(BUILD_DIRECTORY_RELWITHDEBINFO)
 
 $(BUILD_DIRECTORY_RELWITHDEBINFO): 
 	mkdir -p $(BUILD_DIRECTORY_RELWITHDEBINFO)
-
-
-
 
 #
 # ... Debug
@@ -87,13 +81,6 @@ $(CMAKE_CACHE_DEBUG): $(BUILD_DIRECTORY_DEBUG)
 
 $(BUILD_DIRECTORY_DEBUG): 
 	mkdir -p $(BUILD_DIRECTORY_DEBUG)
-
-
-
-
-
-
-
 
 #
 # ... Cleaning
@@ -114,4 +101,3 @@ clean_debug: $(BUILD_DIRECTORY_DEBUG) $(CMAKE_CHACHE_DEBUG)
 .PHONY: distclean
 distclean:
 	rm -rf $(TOPLEVEL_BUILD_DIRECTORY)
-

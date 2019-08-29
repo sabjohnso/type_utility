@@ -1,4 +1,4 @@
-
+include(FetchGTest)
 macro( type_utility_add_simple_test name )
   add_executable( ${name}_test ${name}_test.cpp )
   target_link_libraries( ${name}_test PRIVATE type_utility )    

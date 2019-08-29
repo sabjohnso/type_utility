@@ -4,12 +4,12 @@
 namespace TypeUtility::Config
 {
 
-  constexpr int major_version = ${TYPE_UTILITY_MAJOR};
-  constexpr int minor_version = ${TYPE_UTILITY_MINOR};
-  constexpr int update = ${TYPE_UTILITY_UPDATE};
+  constexpr int major = ${PROJECT_VERSION_MAJOR};
+  constexpr int minor = ${PROJECT_VERSION_MINOR};
+  constexpr int patch = ${PROJECT_VERSION_PATCH};
+
   constexpr bool RTTI_used = ${TYPE_UTILITY_RTTI_USED};
-    
-    
+
 } // end of namespace TypeUtility::Config
 
 #endif // !defined CONFIG_HPP_INCLUDED_1756798575518483850
