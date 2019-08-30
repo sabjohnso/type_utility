@@ -7,65 +7,39 @@ project( TYPE_UTILITY VERSION 0.2.0 LANGUAGES CXX)
 list(INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake)
 
 include(type_utility_deps)
-
-
-
-set( TYPE_UTILITY_SUFFIX -${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR})
-set( TYPE_UTILITY_VERSION type_utility-${TYPE_UTILITY_SUFFIX})
-set( TYPE_UTILITY_VERSION_UPDATE ${TYPE_UTILITY_VERSION}.${TYPE_UTILITY_UPDATE})
-
+include(GNUInstallDirs)
 #
 # ... Build options
 #
 option( BUILD_TYPE_UTILITY_TESTING  "Build the type_utility  tests" ON )
 option( TYPE_UTILITY_USE_RTTI "Use runtime type information" ON )
-option( BUILD_TYPE_UTILITY_DOCUMENTATION "Build the documentation" ON )
-option( TYPE_UTILITY_INSTALL_VERSIONED "Make a version specific installation" ON )
+option( BUILD_TYPE_UTILITY_DOCUMENTATION "Build the documentation" OFF )
 
-#
-# ... Installation path info
-#
-
-set( TYPE_UTILITY_INSTALL_INCLUDE_DIR include
-  CACHE PATH "Path for the installation of the type utility header files" )
-
-set( TYPE_UTILITY_INSTALL_LIBRARY_DIR lib/type_utility
-  CACHE PATH "Path for the installation of the type utility library files" )
-
-set( TYPE_UTILITY_INSTALL_EXEC_DIR bin
-  CACHE PATH "Path for the installation of type utility executables")
-
-if( TYPE_UTILITY_INSTALL_VERSIONED )
-  string( APPEND TYPE_UTILITY_INSTALL_INCLUDE_DIR /type_utility${TYPE_UTILITY_SUFFIX} )
-  string( APPEND TYPE_UTILITY_INSTALL_LIBRARY_DIR ${TYPE_UTILITY_SUFFIX})
-endif()
-
-
-#
-# ... Header library target
-#
 add_library(type_utility INTERFACE)
 
 target_include_directories(type_utility INTERFACE
-  $<INSTALL_INTERFACE:${TYPE_UTILITY_INSTALL_INCLUDE_DIR}>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   $<BUILD_INTERFACE:${TYPE_UTILITY_SOURCE_DIR}>
   $<BUILD_INTERFACE:${TYPE_UTILITY_BINARY_DIR}> )
 
-install( TARGETS type_utility
-  EXPORT type_utility
-  DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR})
-
-install( EXPORT type_utility
-  NAMESPACE type_utility::
-  DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR}
-  FILE type_utility.cmake )
-
+add_library(type_utility::type_utility ALIAS type_utility)
 
 #
 # ... Walk the source tree
 #
 add_subdirectory( type_utility )
 
+#
+# ... Header library target
+#
+install( TARGETS type_utility
+  EXPORT type_utility
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake)
+
+install( EXPORT type_utility
+  NAMESPACE type_utility::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+  FILE type_utility.cmake )
 
 #
 # ... Build the tests

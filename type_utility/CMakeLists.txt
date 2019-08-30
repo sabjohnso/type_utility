@@ -1,19 +1,21 @@
 
 
 
-if( TYPE_UTILITY_USE_RTTI )
-  set( TYPE_UTILITY_RTTI_USED true )
+if(TYPE_UTILITY_USE_RTTI)
+  set(TYPE_UTILITY_RTTI_USED true)
 else()
-  set( TYPE_UTILITY_RTTI_USED false )
+  set(TYPE_UTILITY_RTTI_USED false)
 endif()
 
-configure_file( config.hpp.in config.hpp )
+configure_file(config.hpp.in config.hpp)
 
-install( TARGETS ${TYPE_UTILITY_CONFIG_NAME} EXPORT type_utility
+install(
+  TARGETS ${TYPE_UTILITY_CONFIG_NAME}
+  EXPORT type_utility
   DESTINATION ${TYPE_UTILITY_INSTALL_EXEC_DIR})
 
 
-install( FILES
+install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
   import.hpp
   drop.hpp
@@ -30,10 +32,8 @@ install( FILES
   crtp.hpp
   type_utility.hpp
   value.hpp
-  DESTINATION ${TYPE_UTILITY_INSTALL_INCLUDE_DIR}/type_utility )
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/type_utility)
 
-configure_file( type_utility-config.cmake.in type_utility-config.cmake)
 
-install( FILES
-  ${CMAKE_CURRENT_BINARY_DIR}/type_utility-config.cmake
-  DESTINATION ${TYPE_UTILITY_INSTALL_LIBRARY_DIR} )
+
+
