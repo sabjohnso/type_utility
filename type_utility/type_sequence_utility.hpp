@@ -1,5 +1,4 @@
-#ifndef TYPE_SEQUENCE_UTILITY_HPP_INCLUDED_1829657641493047504
-#define TYPE_SEQUENCE_UTILITY_HPP_INCLUDED_1829657641493047504 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -64,8 +63,6 @@ namespace TypeUtility::Core
     : conditional_t< Has_type<T,Ts...>::value,
 		     false_type,
 		     Are_unique<Ts...>>{};
-    
-  
+      
 } // end of namespace TypeUtility::Core
 
-#endif // !defined TYPE_SEQUENCE_UTILITY_HPP_INCLUDED_1829657641493047504

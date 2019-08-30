@@ -1,5 +1,4 @@
-#ifndef INTEGER_HPP_INCLUDED_2236071534764956228
-#define INTEGER_HPP_INCLUDED_2236071534764956228 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -9,10 +8,9 @@
 #include <type_utility/type_sequence_utility.hpp>
 
 
-namespace TypeUtility
+namespace TypeUtility::Core
 {
-  namespace Core
-  {
+
     
     
     template< size_t N>
@@ -301,7 +299,5 @@ namespace TypeUtility
     
     
     
-  } // end of namespace Cre
-} // end of namespace TypeUtility
 
-#endif // !defined INTEGER_HPP_INCLUDED_2236071534764956228
+} // end of namespace TypeUtility::Core

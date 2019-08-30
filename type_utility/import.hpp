@@ -4,6 +4,7 @@
 //
 // ... Standard header files
 //
+#include <cstddef>
 #include <utility>
 #include <type_traits>
 #include <new>
@@ -18,6 +19,7 @@ namespace TypeUtility
 {
   namespace Core
   {
+    using size_type = std::ptrdiff_t;
 
     using std::align_val_t;
     using std::size_t;

@@ -1,5 +1,4 @@
-#ifndef TEMPLATE_SEQUENCE_HPP_INCLUDED_136933748870103469
-#define TEMPLATE_SEQUENCE_HPP_INCLUDED_136933748870103469 1
+#pragma once
 
 namespace TypeUtility::Core
 {
@@ -12,11 +11,6 @@ namespace TypeUtility::Core
   template< template< typename ... > typename ... Ks >
   constexpr Template_sequence<Ks ...> templates{};
 
-  
-
-  
-
 
 } // end of namespace TypeUtility::Core
 
-#endif // !defined TEMPLATE_SEQUENCE_HPP_INCLUDED_136933748870103469

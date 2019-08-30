@@ -1,5 +1,4 @@
-#ifndef TYPE_SET_HPP_INCLUDED_94411692040795925
-#define TYPE_SET_HPP_INCLUDED_94411692040795925 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -57,6 +56,3 @@ namespace TypeUtility::Core
   }
 
 } // end of namespace TypeUtility::Core
-
-
-#endif // !defined TYPE_SET_HPP_INCLUDED_94411692040795925

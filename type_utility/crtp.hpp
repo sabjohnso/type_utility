@@ -1,16 +1,7 @@
-#ifndef CRTP_HPP_INCLUDED_282592837431372485
-#define CRTP_HPP_INCLUDED_282592837431372485 1
+#pragma once
 
-//
-// ... Type Utility header files
-//
-#include <type_utility/undeletable.hpp>
-
-
-namespace TypeUtility
+namespace TypeUtility::Core
 {
-  namespace Core
-  {
 
     /**
      * @brief A base class for CRTP base classes
@@ -64,10 +55,6 @@ namespace TypeUtility
       ~CRTP() = default;
       
     }; // end of class CRTP
-    
-    
-    
-  } // end of namespace Core
-} // end of namespace TypeUtility
 
-#endif // !defined CRTP_HPP_INCLUDED_282592837431372485
+} // end of namespace TypeUtility::Core
+

@@ -1,5 +1,4 @@
-#ifndef TYPE_SEQUENCE_HPP_INCLUDED_921095977076239931
-#define TYPE_SEQUENCE_HPP_INCLUDED_921095977076239931 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -441,5 +440,3 @@ namespace TypeUtility::Core
   }
 
 } // end of namespace TypeUtility::Core
-
-#endif // !defined TYPE_SEQUENCE_HPP_INCLUDED_921095977076239931

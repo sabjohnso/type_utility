@@ -5,10 +5,9 @@
 #include <type_utility/config.hpp>
 #include <type_utility/import.hpp>
 
-namespace TypeUtility
+namespace TypeUtility::Core
 {
-  namespace Core
-  {
+
 
     /** 
      * @brief Type proxy class 
@@ -758,5 +757,5 @@ namespace TypeUtility
       return os;
     }
     
-  } // end of namespace Core
-} // end of namespace TypeUtility
+
+} // end of namespace TypeUtility::Core

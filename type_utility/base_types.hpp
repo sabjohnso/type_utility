@@ -1,5 +1,4 @@
-#ifndef BASE_TYPES_HPP_INCLUDED_2173693085049882071
-#define BASE_TYPES_HPP_INCLUDED_2173693085049882071 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -8,11 +7,8 @@
 #include <type_utility/import.hpp>
 #include <type_utility/type_sequence.hpp>
 
-
-namespace TypeUtility
+namespace TypeUtility::Core
 {
-  namespace Core
-  {
 
 
     template< size_t size, typename T >
@@ -62,9 +58,6 @@ namespace TypeUtility
 
 
     
-    
-  } // end of namespace Core
-} // end of namespace TYPE_UTILITY_NAMESPACE
+ 
+} // end of namespace TYPE_UTILITY_NAMESPACE::Core
 
-
-#endif // !defined BASE_TYPES_HPP_INCLUDED_2173693085049882071

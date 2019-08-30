@@ -1,5 +1,4 @@
-#ifndef VALUE_HPP_INCLUDED_687200791596155266
-#define VALUE_HPP_INCLUDED_687200791596155266 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -56,4 +55,4 @@ namespace TypeUtility
     
   } // end of namespace Core
 } // end of namespace TypeUtility
-#endif // !defined VALUE_HPP_INCLUDED_687200791596155266
+

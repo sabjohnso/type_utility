@@ -1,6 +1,3 @@
-
-
-
 if(TYPE_UTILITY_USE_RTTI)
   set(TYPE_UTILITY_RTTI_USED true)
 else()
@@ -12,7 +9,7 @@ configure_file(config.hpp.in config.hpp)
 install(
   TARGETS ${TYPE_UTILITY_CONFIG_NAME}
   EXPORT type_utility
-  DESTINATION ${TYPE_UTILITY_INSTALL_EXEC_DIR})
+  DESTINATION ${TYPE_UTILITY_INSTALL_EXEC_DIR} )
 
 
 install(FILES
@@ -28,7 +25,6 @@ install(FILES
   base_types.hpp
   integer.hpp
   integer_set.hpp
-  undeletable.hpp
   crtp.hpp
   type_utility.hpp
   value.hpp

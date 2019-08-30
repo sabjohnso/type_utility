@@ -1,6 +1,4 @@
-#ifndef CONFIG_HPP_INCLUDED_1756798575518483850
-#define CONFIG_HPP_INCLUDED_1756798575518483850 1
-
+#pragma once
 namespace TypeUtility::Config
 {
 
@@ -11,5 +9,3 @@ namespace TypeUtility::Config
   constexpr bool RTTI_used = ${TYPE_UTILITY_RTTI_USED};
 
 } // end of namespace TypeUtility::Config
-
-#endif // !defined CONFIG_HPP_INCLUDED_1756798575518483850

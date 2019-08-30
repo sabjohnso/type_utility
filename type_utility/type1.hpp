@@ -1,5 +1,4 @@
-#ifndef TYPE1_HPP_INCLUDED_680272572858653006
-#define TYPE1_HPP_INCLUDED_680272572858653006 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -8,11 +7,8 @@
 #include <type_utility/type.hpp>
 
 
-namespace TypeUtility
+namespace TypeUtility::Core
 {
-
-  namespace Core
-  {
 
     /** Proxy for templates */
     template< template< typename ... > class K >
@@ -58,7 +54,7 @@ namespace TypeUtility
       return type1<K>;
     }
     
-  } // end of namespace Core
-} // end of namespace TypeUtility
 
-#endif // !defined TYPE1_HPP_INCLUDED_680272572858653006
+} // end of namespace TypeUtility::Core
+
+

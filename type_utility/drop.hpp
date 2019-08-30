@@ -1,6 +1,4 @@
-#ifndef DROP_HPP_INCLUDED_1900745432998936524
-#define DROP_HPP_INCLUDED_1900745432998936524 1
-
+#pragma once
 //
 // ... Type Utility header files
 //
@@ -9,10 +7,9 @@
 
 
 
-namespace TypeUtility
+namespace TypeUtility::Core
 {
-  namespace Core
-  {
+
 
     constexpr auto
     drop( Type_sequence<>, Nat<0>){
@@ -80,12 +77,6 @@ namespace TypeUtility
 	
       return drop( index_sequence<xs...>(), nat<N-1> );
     }
-    
-    
-	
 
-    
-    
-  } // end of namespace Core
-} // end of namespace TypeUtility
-#endif // !defined DROP_HPP_INCLUDED_1900745432998936524
+} // end of namespace TypeUtility::Core
+

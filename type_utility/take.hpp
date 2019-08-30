@@ -1,5 +1,4 @@
-#ifndef TAKE_HPP_INCLUDED_1796238555755909691
-#define TAKE_HPP_INCLUDED_1796238555755909691 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -8,10 +7,8 @@
 #include <type_utility/integer.hpp>
 
 
-namespace TypeUtility
+namespace TypeUtility::Core
 {
-  namespace Core
-  {
 
     
     class  Take_types {
@@ -126,8 +123,5 @@ namespace TypeUtility
 
     
     
-  } // end of namespace Core
-} // end of namespace TypeUtility
 
-
-#endif // !defined TAKE_HPP_INCLUDED_1796238555755909691
+} // end of namespace TypeUtility::Core

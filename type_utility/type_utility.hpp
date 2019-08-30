@@ -1,5 +1,4 @@
-#ifndef TYPE_UTILITY_HPP_INCLUDED_1323111970257335075
-#define TYPE_UTILITY_HPP_INCLUDED_1323111970257335075 1
+#pragma once
 
 //
 // ... Type Utility header files
@@ -12,7 +11,6 @@
 #include <type_utility/integer_set.hpp>
 #include <type_utility/base_types.hpp>
 #include <type_utility/crtp.hpp>
-#include <type_utility/undeletable.hpp>
 #include <type_utility/value.hpp>
 #include <type_utility/take.hpp>
 #include <type_utility/drop.hpp>
@@ -21,13 +19,17 @@
 
 namespace TypeUtility
 {
+  //
+  // ... size
+  // 
+  using Core::size_type;
 
   //
   // ... base types
   //
   using Core::Int;
   using Core::UInt;
-  using Core::Float;
+  using Core::Float; 
 
   //
   // ... type proxies
@@ -117,15 +119,9 @@ namespace TypeUtility
   //
   using Core::Value;
 
-
   using Core::count_types;
   using Core::count_args;
 
-
-
   using Core::operator<<;
   
-  
 } // end of namespace TypeUtility
-
-#endif // !defined TYPE_UTILITY_HPP_INCLUDED_1323111970257335075

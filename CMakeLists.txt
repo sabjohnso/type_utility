@@ -3,11 +3,12 @@
 #
 cmake_minimum_required( VERSION 3.8 )
 
-project( TYPE_UTILITY VERSION 0.2.0 LANGUAGES CXX)
+project( TYPE_UTILITY VERSION 0.2.0 LANGUAGES CXX )
 list(INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake)
 
-include(type_utility_deps)
-include(GNUInstallDirs)
+include( type_utility_deps )
+include( GNUInstallDirs )
+
 #
 # ... Build options
 #
@@ -15,31 +16,24 @@ option( BUILD_TYPE_UTILITY_TESTING  "Build the type_utility  tests" ON )
 option( TYPE_UTILITY_USE_RTTI "Use runtime type information" ON )
 option( BUILD_TYPE_UTILITY_DOCUMENTATION "Build the documentation" OFF )
 
-add_library(type_utility INTERFACE)
 
-target_include_directories(type_utility INTERFACE
+#
+# ... Add an the interface library
+# 
+add_library( type_utility INTERFACE )
+
+target_include_directories( type_utility INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   $<BUILD_INTERFACE:${TYPE_UTILITY_SOURCE_DIR}>
   $<BUILD_INTERFACE:${TYPE_UTILITY_BINARY_DIR}> )
 
-add_library(type_utility::type_utility ALIAS type_utility)
+add_library( type_utility::type_utility ALIAS type_utility )
 
 #
 # ... Walk the source tree
 #
 add_subdirectory( type_utility )
 
-#
-# ... Header library target
-#
-install( TARGETS type_utility
-  EXPORT type_utility
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake)
-
-install( EXPORT type_utility
-  NAMESPACE type_utility::
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
-  FILE type_utility.cmake )
 
 #
 # ... Build the tests
@@ -80,12 +74,20 @@ if( BUILD_TYPE_UTILITY_DOCUMENTATION )
     affix_documentation ALL
     DEPENDS ${TYPE_UTILITY_BINARY_DIR}/type_utility_doxygen.log )
   
-  install( DIRECTORY ${TYPE_UTILITY_BINARY_DIR}/doc/html DESTINATION ${TYPE_UTILITY_INSTALL_DOC_DIR})
-  install( DIRECTORY ${TYPE_UTILITY_BINARY_DIR}/doc/man DESTINATION ${TYPE_UTILITY_INSTALL_MAN_DIR})
+  install( DIRECTORY ${TYPE_UTILITY_BINARY_DIR}/doc/html DESTINATION ${TYPE_UTILITY_INSTALL_DOC_DIR} )
+  install( DIRECTORY ${TYPE_UTILITY_BINARY_DIR}/doc/man DESTINATION ${TYPE_UTILITY_INSTALL_MAN_DIR} )
 endif( BUILD_TYPE_UTILITY_DOCUMENTATION )
 
+#
+# ... Header library target
+#
+install( TARGETS type_utility
+  EXPORT type_utility
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake )
 
-install( SCRIPT cmake/post_install.cmake )
+install( EXPORT type_utility
+  NAMESPACE type_utility::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+  FILE type_utility_exports.cmake )
 
 # end of build definition for type_utility
-
