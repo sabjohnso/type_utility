@@ -4,11 +4,14 @@
 cmake_minimum_required( VERSION 3.8 )
 
 project( TYPE_UTILITY VERSION 0.2.0 LANGUAGES CXX)
+list(INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake)
+include(type_utility_deps)
 
-set( TYPE_UTILITY_SUFFIX -${TYPE_UTILITY_MAJOR}.${TYPE_UTILITY_MINOR} )
+list(INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake_modules)
+
+set( TYPE_UTILITY_SUFFIX -${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR})
 set( TYPE_UTILITY_VERSION type_utility-${TYPE_UTILITY_SUFFIX})
-set( TYPE_UTILITY_VERSION_UPDATE ${TYPE_UTILITY_VERSION}.${TYPE_UTILITY_UPDATE} )
-
+set( TYPE_UTILITY_VERSION_UPDATE ${TYPE_UTILITY_VERSION}.${TYPE_UTILITY_UPDATE})
 
 #
 # ... Build options
@@ -17,7 +20,6 @@ option( BUILD_TYPE_UTILITY_TESTING  "Build the type_utility  tests" ON )
 option( TYPE_UTILITY_USE_RTTI "Use runtime type information" ON )
 option( BUILD_TYPE_UTILITY_DOCUMENTATION "Build the documentation" ON )
 option( TYPE_UTILITY_INSTALL_VERSIONED "Make a version specific installation" ON )
-
 
 #
 # ... Installation path info
@@ -43,10 +45,10 @@ endif()
 #
 add_library(type_utility INTERFACE)
 
-target_include_directories(type_utility INTERFACE $<INSTALL_INTERFACE:${TYPE_UTILITY_INSTALL_INCLUDE_DIR}>)
-target_include_directories(type_utility INTERFACE $<BUILD_INTERFACE:${TYPE_UTILITY_SOURCE_DIR}>)
-target_include_directories(type_utility INTERFACE $<BUILD_INTERFACE:${TYPE_UTILITY_BINARY_DIR}>)
-
+target_include_directories(type_utility INTERFACE
+  $<INSTALL_INTERFACE:${TYPE_UTILITY_INSTALL_INCLUDE_DIR}>
+  $<BUILD_INTERFACE:${TYPE_UTILITY_SOURCE_DIR}>
+  $<BUILD_INTERFACE:${TYPE_UTILITY_BINARY_DIR}> )
 
 install( TARGETS type_utility
   EXPORT type_utility
@@ -64,25 +66,22 @@ install( EXPORT type_utility
 add_subdirectory( type_utility )
 
 
-
+#
+# ... Build the tests
+#
 if( BUILD_TYPE_UTILITY_TESTING )
   enable_testing()
   add_subdirectory( type_utility_testing )
 endif( BUILD_TYPE_UTILITY_TESTING )
 
-
-
 if( BUILD_TYPE_UTILITY_DOCUMENTATION )
   set( TYPE_UTILITY_INSTALL_DOC_DIR
-    share/doc/type_utility-${TYPE_UTILITY_MAJOR}.${TYPE_UTILITY_MINOR}
+    share/doc/type_utility-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     CACHE PATH "Path for the installation of the type utility documentation" )
   
-
   set( TYPE_UTILITY_INSTALL_MAN_DIR
     share
     CACHE PATH "Path for the installation of the type utility manual pages" )
-
-  
 
   find_package( Doxygen REQUIRED  )
   configure_file( Doxyfile.in Doxyfile )
