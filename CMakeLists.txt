@@ -83,11 +83,11 @@ endif( BUILD_TYPE_UTILITY_DOCUMENTATION )
 #
 install( TARGETS type_utility
   EXPORT type_utility
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake )
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/type_utility )
 
 install( EXPORT type_utility
   NAMESPACE type_utility::
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/type_utility
   FILE type_utility_exports.cmake )
 
 # end of build definition for type_utility
