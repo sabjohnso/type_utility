@@ -30,7 +30,7 @@ namespace TypeUtility::Core
 
   template< bool test, typename Pass, typename Fail >
   constexpr auto
-  cond( Pass p, Fail f){
+  cond( Pass, Fail){
     return  conditional_t<test, Pass, Fail >{};
   }
 

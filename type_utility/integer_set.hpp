@@ -90,7 +90,7 @@ namespace TypeUtility::Core
 
   template< typename T, T ... xs, T y, T ... ys >
   constexpr bool
-  issubset( Integer_set<T,xs...> xset, Integer_set<T,y,ys ...> ){
+  issubset( Integer_set<T,xs...>, Integer_set<T,y,ys ...> ){
     return ismember(integer_set<T,xs...>, integer<T,y>)
       ? issubset( integer_set<T,xs...>, integer_set<T,ys...> )
       : false;
@@ -98,7 +98,7 @@ namespace TypeUtility::Core
 
   template< typename T, T ... xs >
   constexpr bool
-  issubset( Integer_set<T,xs...> xset, Integer_set<T> ){
+  issubset( Integer_set<T,xs...>, Integer_set<T> ){
     return true;
   }
       
@@ -116,7 +116,7 @@ namespace TypeUtility::Core
 
   template< typename T, T ... ys, T ... zs >
   constexpr auto
-  integer_set_difference_aux( Integer_set<T>, Integer_set<T,ys ...> yset, Integer_set<T,zs ...> accum ){
+  integer_set_difference_aux( Integer_set<T>, Integer_set<T,ys ...> , Integer_set<T,zs ...> accum ){
     return accum;
   }
 

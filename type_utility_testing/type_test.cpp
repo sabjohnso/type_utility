@@ -20,6 +20,7 @@ namespace TypeUtility::Testing
   TEST( Type, Contruction )
   {
     constexpr Type<int> tint{};
+    EXPECT_TRUE( tint.isfundamental() );
   }
 
 } // end of namespace TypeUtility::Testing
