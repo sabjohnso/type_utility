@@ -4,7 +4,7 @@
 cmake_minimum_required( VERSION 3.8 )
 
 project( TYPE_UTILITY VERSION 0.2.0 LANGUAGES CXX )
-list(INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake)
+list( INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake )
 
 include( type_utility_deps )
 include( GNUInstallDirs )
@@ -18,7 +18,7 @@ option( BUILD_TYPE_UTILITY_DOCUMENTATION "Build the documentation" OFF )
 
 
 #
-# ... Add an the interface library
+# ... Add the interface library
 # 
 add_library( type_utility INTERFACE )
 
