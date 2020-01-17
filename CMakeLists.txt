@@ -88,6 +88,11 @@ install( TARGETS type_utility
 install( EXPORT type_utility
   NAMESPACE type_utility::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/type_utility
-  FILE type_utility_exports.cmake )
+  FILE type_utility-exports.cmake )
+
+configure_file(type_utility-config.cmake.in type_utility-config.cmake)
+install( FILES ${TYPE_UTILITY_BINARY_DIR}/type_utility-config.cmake
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/type_utility)
+  
 
 # end of build definition for type_utility

@@ -22,6 +22,12 @@ namespace TypeUtility
       using reference = value_type&;
       using const_reference = const value_type&;
       using rvalue_reference = value_type&&;
+
+      constexpr
+      Value( Value const& input ) :  value( input.value ){}
+
+      constexpr
+      Value( Value&& input ) : value( move( input.value )){}
       
       template< typename ... Ts >
       constexpr
@@ -42,14 +48,9 @@ namespace TypeUtility
 	
 
     private:
-      
-      constexpr      
-      operator const value_type& () const & { return value; }
 
-      constexpr
-      operator value_type&& () && { return value; }
-      
       value_type value;
+
     }; //  end of class Value
     
     

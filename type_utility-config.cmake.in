@@ -1,5 +1,7 @@
-list(INSERT CMAKE_MODULE_PATH 0 @CMAKE_INSTALL_LIBDIR@/cmake)
-include(type_utility_exports)
+if(NOT TARGET type_utility::type_utility)
+  list(INSERT CMAKE_MODULE_PATH 0 @CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@/cmake/type_utility)
+  include(type_utility-exports)
+endif()
 
 
 

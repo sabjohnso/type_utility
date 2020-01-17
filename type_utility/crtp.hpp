@@ -51,8 +51,13 @@ namespace TypeUtility::Core
       // be held as a polymorphic pointer on which delete might be executed. Attempts,
       // to delete a pointer to this base class indicate flawed understanding of
       // this class and CRTP in general.
+      //
+      // For the C++17 standard this causes problems as temporaries constructed during
+      // the construction of subtypes cannot be destroyed.
+#if 0
       CRTP()  = default;
       ~CRTP() = default;
+#endif
       
     }; // end of class CRTP
 
