@@ -23,15 +23,11 @@ namespace TypeUtility
       using const_reference = const value_type&;
       using rvalue_reference = value_type&&;
 
-      constexpr
-      Value( Value const& input ) :  value( input.value ){}
-
-      constexpr
-      Value( Value&& input ) : value( move( input.value )){}
       
-      template< typename ... Ts >
+      template< typename U, typename ... Us >
       constexpr
-      Value( Ts&& ... inputs ) : value( forward<Ts>( inputs ) ... ){}
+      Value( U&& input, Us && ... inputs )
+        : value( forward<U>(input), forward<Us>( inputs ) ... ){}
 
     protected:
 
@@ -48,6 +44,14 @@ namespace TypeUtility
 	
 
     private:
+
+      constexpr
+      operator const_reference () const & { return value; }
+
+      constexpr
+      operator rvalue_reference () && { return move( value ); }
+
+      operator reference () & { return value; }
 
       value_type value;
 
