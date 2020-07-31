@@ -33,6 +33,9 @@ namespace TypeUtility::Core {
     return count_types<Ts...>();
   }
 
+  template<typename ... Ts>
+  constexpr auto type_count = count_types<Ts ...>();
+
   template<typename T, typename... Ts>
   struct Has_type;
 
