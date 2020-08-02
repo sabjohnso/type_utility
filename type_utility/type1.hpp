@@ -29,7 +29,7 @@ namespace TypeUtility::Core {
     constexpr Type<K<Ts...>>
     operator()(Type<Ts>...) const&
     {
-      return make(type<K<Ts>...>);
+      return make_type(type<Ts> ...);
     }
 
   }; // end of class Type1
