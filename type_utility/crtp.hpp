@@ -22,8 +22,11 @@ namespace TypeUtility::Core {
    *
    * @tparam T - A type template parameter that is the target type of the
    * casting operators.
+   *
+   * @tparam Ts - A parameter pack of types that may be use for additional
+   * disabiguation.
    */
-  template<template<typename...> class K, typename T>
+  template<template<typename...> class K, typename T, typename ... Ts>
   class CRTP
   {
   public:

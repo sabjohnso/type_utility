@@ -12,7 +12,7 @@ namespace TypeUtility::Core
   template<template<typename ...> class K, typename ... Ts>
   struct Partial_template {
     template<typename ... Us>
-    using apply = K<Ts..., Us...>;
+    using tmplt = K<Ts..., Us...>;
 
     template<typename ... Us>
     static constexpr auto
@@ -37,8 +37,6 @@ namespace TypeUtility::Core
     static constexpr auto
     size(){ return types<Ts...>.size(); }
   }; // end of class Partial_template
-
-
 
   template<template<typename ...> class K, typename ... Ts>
   constexpr Partial_template<K,Ts...> partial_template{};
