@@ -137,6 +137,13 @@ namespace TypeUtility::Core {
     {
       return at<index>();
     }
+    template<size_t index>
+    constexpr auto
+    operator ()(Nat<index>) const { return at(nat<index>); }
+
+    template<size_t index>
+    constexpr auto
+    operator [](Nat<index>) const { return at(nat<index>); }
 
     template<typename T>
     static constexpr bool
@@ -199,6 +206,8 @@ namespace TypeUtility::Core {
       static_assert(sat<Pred>(), "Expected at least one type to satisfy Pred");
       return type<typename First_sat<Type1<Pred>, Ts...>::type>;
     }
+
+
 
   }; // end of struct  Type_sequence
 

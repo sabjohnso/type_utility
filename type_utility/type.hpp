@@ -737,6 +737,25 @@ namespace TypeUtility::Core {
     return os;
   }
 
+    /**
+   * @brief Inject a printed representation of a type into an output stream
+   *
+   * @details Use of this operator requires RTTI and might not be suitable for
+   * all applications.
+   */
+  template<typename T>
+  ostream&
+  operator<<(ostream& os, Type<T>)
+  {
+    static_assert(
+      Config::RTTI_used,
+      "This operator cannot be used without RTTI.  "
+      "Please, provide your own definition if you do not want "
+      "to use RTTI.");
+    os << typeid(T).name();
+    return os;
+  }
+
   /**
    * @brief Given function on plane values and a type proxy, return a type proxy
    */

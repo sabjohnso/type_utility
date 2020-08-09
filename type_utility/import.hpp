@@ -8,6 +8,7 @@
 #include <new>
 #include <type_traits>
 #include <utility>
+#include <iostream>
 
 //
 // ... Type Utility header files
@@ -103,6 +104,8 @@ namespace TypeUtility {
     using std::is_invocable_r;
     using std::is_nothrow_invocable;
     using std::is_nothrow_invocable_r;
+
+    using std::ostream;
 
   } // end of namespace Core
 } // end of namespace TypeUtility

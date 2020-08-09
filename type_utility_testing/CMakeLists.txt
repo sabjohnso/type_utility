@@ -33,3 +33,6 @@ type_utility_add_simple_test( crtp )
 type_utility_add_simple_test( value )
 type_utility_add_simple_test( take_and_drop )
 type_utility_add_simple_test( template_sequence )
+
+
+type_utility_add_test(partial_template partial_template_test partial_template_test.cpp)
