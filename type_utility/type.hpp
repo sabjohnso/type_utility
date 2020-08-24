@@ -744,7 +744,7 @@ namespace TypeUtility::Core {
    * all applications
    */
   template<typename T>
-  ostream&
+  inline ostream&
   operator<<(ostream& os, Type<T> const&)
   {
     static_assert(
@@ -911,12 +911,35 @@ namespace TypeUtility::Core {
   }
 
   /**
+   * @brief Inject a printed representation of a type proxy for int
+   * to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<int> const&)
+  {
+    os << "int";
+    return os;
+  }
+
+  /**
    * @brief Inject a prlonged representation of a type proxy for long
    * to an output Stream
    */
   template<typename Stream>
   Stream&
   operator<<(Stream& os, Type<long> const&)
+  {
+    os << "long";
+    return os;
+  }
+
+  /**
+   * @brief Inject a prlonged representation of a type proxy for long
+   * to an output Stream
+   */
+
+  inline ostream&
+  operator<<(ostream& os, Type<long> const&)
   {
     os << "long";
     return os;
@@ -935,12 +958,34 @@ namespace TypeUtility::Core {
   }
 
   /**
+   * @brief Inject a prlong longed representation of a type proxy for long long
+   * to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<long long> const&)
+  {
+    os << "long long";
+    return os;
+  }
+
+  /**
    * @brief Inject a prunsigned shorted representation of a type proxy for
    * unsigned short to an output Stream
    */
   template<typename Stream>
   Stream&
   operator<<(Stream& os, Type<unsigned short> const&)
+  {
+    os << "unsigned short";
+    return os;
+  }
+
+  /**
+   * @brief Inject a prunsigned shorted representation of a type proxy for
+   * unsigned short to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<unsigned short> const&)
   {
     os << "unsigned short";
     return os;
@@ -959,6 +1004,17 @@ namespace TypeUtility::Core {
   }
 
   /**
+   * @brief Inject a prunsigneded representation of a type proxy for unsigned
+   * to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<unsigned> const&)
+  {
+    os << "unsigned";
+    return os;
+  }
+
+  /**
    * @brief Inject a prunsigned longed representation of a type proxy for
    * unsigned long to an output Stream
    */
@@ -971,12 +1027,35 @@ namespace TypeUtility::Core {
   }
 
   /**
+   * @brief Inject a prunsigned longed representation of a type proxy for
+   * unsigned long to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<unsigned long> const&)
+  {
+    os << "unsigned long";
+    return os;
+  }
+
+  /**
    * @brief Inject a prunsigned long longed representation of a type proxy for
    * unsigned long long to an output Stream
    */
   template<typename Stream>
   Stream&
   operator<<(Stream& os, Type<unsigned long long> const&)
+  {
+    os << "unsigned long long";
+    return os;
+  }
+
+
+  /**
+   * @brief Inject a prunsigned long longed representation of a type proxy for
+   * unsigned long long to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<unsigned long long> const&)
   {
     os << "unsigned long long";
     return os;
@@ -995,6 +1074,17 @@ namespace TypeUtility::Core {
   }
 
   /**
+   * @brief Inject a prfloated representation of a type proxy for float
+   * to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<float> const&)
+  {
+    os << "float";
+    return os;
+  }
+
+  /**
    * @brief Inject a prdoubleed representation of a type proxy for double
    * to an output Stream
    */
@@ -1007,12 +1097,34 @@ namespace TypeUtility::Core {
   }
 
   /**
+   * @brief Inject a prdoubleed representation of a type proxy for double
+   * to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<double> const&)
+  {
+    os << "double";
+    return os;
+  }
+
+  /**
    * @brief Inject a prlong doubleed representation of a type proxy for long
    * double to an output Stream
    */
   template<typename Stream>
   Stream&
   operator<<(Stream& os, Type<long double> const&)
+  {
+    os << "long double";
+    return os;
+  }
+
+  /**
+   * @brief Inject a prlong doubleed representation of a type proxy for long
+   * double to an output Stream
+   */
+  inline ostream&
+  operator<<(ostream& os, Type<long double> const&)
   {
     os << "long double";
     return os;
