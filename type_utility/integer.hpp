@@ -93,9 +93,17 @@ namespace TypeUtility::Core {
       return Nat<N % M>();
     }
 
+
+    friend ostream&
+    operator<<(ostream& os, Nat const&)
+    {
+      os << "nat<" << N << ">";
+      return os;
+    }
+
     template<typename Stream>
     friend Stream&
-    operator<<(Stream& os, Nat)
+    operator<<(Stream& os, Nat const&)
     {
       os << "nat<" << N << ">";
       return os;
@@ -147,7 +155,7 @@ namespace TypeUtility::Core {
 
   template<typename Stream, typename T, T x>
   Stream&
-  operator<<(Stream& os, Integer<T, x>)
+  operator<<(Stream& os, Integer<T, x> const&)
   {
     os << '[' << x << ':' << type<T> << ']';
     return os;

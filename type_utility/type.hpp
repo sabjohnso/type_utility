@@ -726,7 +726,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream, typename T>
   Stream&
-  operator<<(Stream& os, Type<T>)
+  operator<<(Stream& os, Type<T> const&)
   {
     static_assert(
       Config::RTTI_used,
@@ -741,11 +741,11 @@ namespace TypeUtility::Core {
    * @brief Inject a printed representation of a type into an output stream
    *
    * @details Use of this operator requires RTTI and might not be suitable for
-   * all applications.
+   * all applications
    */
   template<typename T>
   ostream&
-  operator<<(ostream& os, Type<T>)
+  operator<<(ostream& os, Type<T> const&)
   {
     static_assert(
       Config::RTTI_used,
@@ -755,6 +755,7 @@ namespace TypeUtility::Core {
     os << typeid(T).name();
     return os;
   }
+
 
   /**
    * @brief Given function on plane values and a type proxy, return a type proxy
@@ -819,7 +820,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<char>)
+  operator<<(Stream& os, Type<char> const&)
   {
     os << "char";
     return os;
@@ -831,7 +832,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<unsigned char>)
+  operator<<(Stream& os, Type<unsigned char> const&)
   {
     os << "unsigned char";
     return os;
@@ -843,7 +844,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<signed char>)
+  operator<<(Stream& os, Type<signed char> const&)
   {
     os << "signed char";
     return os;
@@ -855,7 +856,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<wchar_t>)
+  operator<<(Stream& os, Type<wchar_t> const&)
   {
     os << "wchar_t";
     return os;
@@ -867,7 +868,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<char16_t>)
+  operator<<(Stream& os, Type<char16_t> const&)
   {
     os << "char16_t";
     return os;
@@ -879,7 +880,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<char32_t>)
+  operator<<(Stream& os, Type<char32_t> const&)
   {
     os << "char32_t";
     return os;
@@ -891,7 +892,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<short>)
+  operator<<(Stream& os, Type<short> const&)
   {
     os << "short";
     return os;
@@ -903,7 +904,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<int>)
+  operator<<(Stream& os, Type<int> const&)
   {
     os << "int";
     return os;
@@ -915,7 +916,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<long>)
+  operator<<(Stream& os, Type<long> const&)
   {
     os << "long";
     return os;
@@ -927,7 +928,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<long long>)
+  operator<<(Stream& os, Type<long long> const&)
   {
     os << "long long";
     return os;
@@ -939,7 +940,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<unsigned short>)
+  operator<<(Stream& os, Type<unsigned short> const&)
   {
     os << "unsigned short";
     return os;
@@ -951,7 +952,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<unsigned>)
+  operator<<(Stream& os, Type<unsigned> const&)
   {
     os << "unsigned";
     return os;
@@ -963,7 +964,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<unsigned long>)
+  operator<<(Stream& os, Type<unsigned long> const&)
   {
     os << "unsigned long";
     return os;
@@ -975,7 +976,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<unsigned long long>)
+  operator<<(Stream& os, Type<unsigned long long> const&)
   {
     os << "unsigned long long";
     return os;
@@ -987,7 +988,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<float>)
+  operator<<(Stream& os, Type<float> const&)
   {
     os << "float";
     return os;
@@ -999,7 +1000,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<double>)
+  operator<<(Stream& os, Type<double> const&)
   {
     os << "double";
     return os;
@@ -1011,7 +1012,7 @@ namespace TypeUtility::Core {
    */
   template<typename Stream>
   Stream&
-  operator<<(Stream& os, Type<long double>)
+  operator<<(Stream& os, Type<long double> const&)
   {
     os << "long double";
     return os;

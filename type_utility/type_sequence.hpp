@@ -463,7 +463,7 @@ namespace TypeUtility::Core {
 
   template<typename Stream, typename T>
   Stream&
-  operator<<(Stream& os, Type_sequence<T>)
+  operator<<(Stream& os, Type_sequence<T> const&)
   {
     os << type<T>;
     return os;
@@ -471,7 +471,7 @@ namespace TypeUtility::Core {
 
   template<typename Stream, typename T, typename U, typename... Vs>
   Stream&
-  operator<<(Stream& os, Type_sequence<T, U, Vs...>)
+  operator<<(Stream& os, Type_sequence<T, U, Vs...> const&)
   {
     os << type<T> << ',' << types<U, Vs...>;
     return os;
@@ -479,7 +479,31 @@ namespace TypeUtility::Core {
 
   template<typename Stream, template<typename...> class K, typename... Ts>
   Stream&
-  operator<<(Stream& os, Type<K<Ts...>>)
+  operator<<(Stream& os, Type<K<Ts...>> const&)
+  {
+    os << type<Type1<K>> << '<' << types<Ts...> << '>';
+    return os;
+  }
+
+  template<typename T>
+  ostream&
+  operator<<(ostream& os, Type_sequence<T> const&)
+  {
+    os << type<T>;
+    return os;
+  }
+
+  template<typename T, typename U, typename... Vs>
+  ostream&
+  operator<<(ostream& os, Type_sequence<T, U, Vs...> const&)
+  {
+    os << type<T> << ',' << types<U, Vs...>;
+    return os;
+  }
+
+  template<template<typename...> class K, typename... Ts>
+  ostream&
+  operator<<(ostream& os, Type<K<Ts...>> const&)
   {
     os << type<Type1<K>> << '<' << types<Ts...> << '>';
     return os;

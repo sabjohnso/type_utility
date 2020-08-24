@@ -3,7 +3,7 @@
 #
 cmake_minimum_required( VERSION 3.8 )
 
-project( TYPE_UTILITY VERSION 0.3.0 LANGUAGES CXX )
+project( TYPE_UTILITY VERSION 0.3.1 LANGUAGES CXX )
 list( INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake )
 
 include( type_utility_deps )

@@ -39,7 +39,7 @@ namespace TypeUtility::Core {
 
   template<typename Stream, template<typename...> class K>
   Stream&
-  operator<<(Stream& os, Type1<K>)
+  operator<<(Stream& os, Type1<K> const&)
   {
     os << type<Type1<K>>;
     return os;
