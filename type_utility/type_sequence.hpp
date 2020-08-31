@@ -211,6 +211,10 @@ namespace TypeUtility::Core {
 
   }; // end of struct  Type_sequence
 
+  template<typename ... Ts>
+  using Types = Type_sequence<Ts...>;
+
+
   template<typename... Ts>
   constexpr Type_sequence<Ts...> types{};
 

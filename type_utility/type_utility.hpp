@@ -60,6 +60,7 @@ namespace TypeUtility {
   using Core::rappend;
   using Core::reverse;
   using Core::tail;
+  using Core::Types;
   using Core::Type_sequence;
   using Core::type_sequence_apply;
   using Core::type_sequence_bind;
