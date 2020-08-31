@@ -47,6 +47,7 @@ namespace TypeUtility {
   using Core::Type1;
   using Core::type1;
   using Core::Templates;
+  using Core::templates;
   using Core::Partial_template;
   using Core::partial_template;
 
