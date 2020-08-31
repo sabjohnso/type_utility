@@ -2,8 +2,11 @@
 
 namespace TypeUtility::Core {
 
+  template<template<typename ...> typename ... Ks>
+  class Templates{};
+
   template<template<typename...> typename... Ks>
-  class Template_sequence {}; // end of class
+  using Template_sequence = Templates<Ks...>;
 
   template<template<typename...> typename... Ks>
   constexpr Template_sequence<Ks...> templates{};

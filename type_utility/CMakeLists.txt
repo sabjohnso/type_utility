@@ -26,6 +26,7 @@ install(FILES
   integer.hpp
   integer_set.hpp
   crtp.hpp
+  template_sequence.hpp
   partial_template.hpp
   type_utility.hpp
   value.hpp

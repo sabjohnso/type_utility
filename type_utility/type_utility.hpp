@@ -12,6 +12,7 @@
 #include <type_utility/type.hpp>
 #include <type_utility/type1.hpp>
 #include <type_utility/partial_template.hpp>
+#include <type_utility/template_sequence.hpp>
 #include <type_utility/type_sequence.hpp>
 #include <type_utility/type_set.hpp>
 #include <type_utility/value.hpp>
@@ -45,7 +46,7 @@ namespace TypeUtility {
   //
   using Core::Type1;
   using Core::type1;
-
+  using Core::Templates;
   using Core::Partial_template;
   using Core::partial_template;
 
