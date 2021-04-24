@@ -1,4 +1,4 @@
-include(FetchGTest)
+find_package(GTest)
 
 macro( type_utility_add_simple_test name )
   add_executable( ${name}_test ${name}_test.cpp )
