@@ -4,8 +4,8 @@ macro( type_utility_add_simple_test name )
   add_executable( ${name}_test ${name}_test.cpp )
   set_target_properties( ${name}_test
     PROPERTIES
-    CXX_STANDARD 17)
-  target_link_libraries( ${name}_test PRIVATE type_utility )    
+    CXX_STANDARD ${TYPE_UTIITY_CXX_STANDARD})
+  target_link_libraries( ${name}_test PRIVATE type_utility )
   add_test( ${name} ${name}_test )
 endmacro( type_utility_add_simple_test name )
 
@@ -17,7 +17,7 @@ macro( type_utility_add_test name exe_name)
     GTest::gtest_main )
   set_target_properties( ${exe_name}
     PROPERTIES
-    CXX_STANDARD 17 )
+    CXX_STANDARD  ${TYPE_UTIITY_CXX_STANDARD})
   add_test( ${name} ${exe_name} )
 endmacro()
 

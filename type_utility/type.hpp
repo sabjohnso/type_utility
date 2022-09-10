@@ -49,7 +49,8 @@ namespace TypeUtility::Core {
      * @brief Return false as the default for equality comparison
      */
     template<typename U>
-    constexpr bool operator==(U) const&
+    constexpr bool
+    operator==(U) const&
     {
       return false;
     }
@@ -57,7 +58,11 @@ namespace TypeUtility::Core {
     /**
      * @brief Return true for equality comparsion with a proxy to the same type
      */
-    constexpr bool operator==(Type) const& { return true; }
+    constexpr bool
+    operator==(Type) const&
+    {
+      return true;
+    }
 
     /**
      * @brief Return the logical negation of equality comparison
@@ -312,7 +317,6 @@ namespace TypeUtility::Core {
     {
       return is_pod<type>::value;
     }
-#endif
 
     /**
      * @brief checks if a type is literal type
@@ -322,6 +326,7 @@ namespace TypeUtility::Core {
     {
       return is_literal_type<type>::value;
     }
+#endif
 
     /**
      * @brief checks if every bit in the type's object representation
@@ -739,7 +744,7 @@ namespace TypeUtility::Core {
     return os;
   }
 
-    /**
+  /**
    * @brief Inject a printed representation of a type into an output stream
    *
    * @details Use of this operator requires RTTI and might not be suitable for
@@ -758,12 +763,12 @@ namespace TypeUtility::Core {
     return os;
   }
 
-
   /**
    * @brief Given function on plane values and a type proxy, return a type proxy
    */
   template<typename F, typename T>
-  constexpr auto type_transform(F, Type<T>)
+  constexpr auto
+  type_transform(F, Type<T>)
   {
     return type<decay_t<result_of_t<F(T)>>>;
   }
@@ -772,7 +777,8 @@ namespace TypeUtility::Core {
    * @brief Given function on plane values and a type proxy, return a type proxy
    */
   template<typename F, typename T>
-  constexpr auto type_transform(Type<T>)
+  constexpr auto
+  type_transform(Type<T>)
   {
     return type<decay_t<result_of_t<F(T)>>>;
   }
@@ -792,7 +798,8 @@ namespace TypeUtility::Core {
    *  return a type proxy
    */
   template<typename F, typename T>
-  constexpr auto type_apply(Type<F>, Type<T>)
+  constexpr auto
+  type_apply(Type<F>, Type<T>)
   {
     return type<decay_t<result_of_t<F(T)>>>;
   }
@@ -802,7 +809,8 @@ namespace TypeUtility::Core {
    *  a type proxy
    */
   template<typename T, typename F>
-  constexpr auto type_bind(Type<T>, F)
+  constexpr auto
+  type_bind(Type<T>, F)
   {
     return result_of_t<F(T)>{};
   }
@@ -811,7 +819,8 @@ namespace TypeUtility::Core {
    * @brief Strip a layer off a type proxy
    */
   template<typename T>
-  constexpr auto type_join(Type<Type<T>>)
+  constexpr auto
+  type_join(Type<Type<T>>)
   {
     return type<T>;
   }
@@ -1050,7 +1059,6 @@ namespace TypeUtility::Core {
     os << "unsigned long long";
     return os;
   }
-
 
   /**
    * @brief Inject a prunsigned long longed representation of a type proxy for
