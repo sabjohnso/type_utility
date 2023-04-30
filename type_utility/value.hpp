@@ -21,7 +21,7 @@ namespace TypeUtility {
 
       template<typename U, typename... Us>
       constexpr Value(U&& input, Us&&... inputs)
-        : value(forward<U>(input), forward<Us>(inputs)...)
+        : value(std::forward<U>(input), std::forward<Us>(inputs)...)
       {}
 
     protected:
@@ -34,7 +34,7 @@ namespace TypeUtility {
       constexpr rvalue_reference
       get() &&
       {
-        return move(value);
+        return std::move(value);
       }
 
       reference
