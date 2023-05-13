@@ -4,7 +4,7 @@
 cmake_minimum_required( VERSION 3.8 )
 
 project( TYPE_UTILITY VERSION 0.3.1 LANGUAGES CXX )
-set(TYPE_UTIITY_CXX_STANDARD 20 CACHE STRING "C++ standard for TYPE_UTILITY")
+set(TYPE_UTIITY_CXX_STANDARD 23 CACHE STRING "C++ standard for TYPE_UTILITY")
 list( INSERT CMAKE_MODULE_PATH 0 ${TYPE_UTILITY_SOURCE_DIR}/cmake )
 
 include( type_utility_deps )

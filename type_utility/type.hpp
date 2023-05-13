@@ -308,7 +308,7 @@ namespace TypeUtility::Core {
       return is_standard_layout<type>::value;
     }
 
-#if __cplusplus <= 201703L
+#if __cplusplus < 201703L
     /**
      * @brief checks if a type is plain-old data (POD) type
      */
