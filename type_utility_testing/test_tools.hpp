@@ -8,23 +8,19 @@
 #include <sstream>
 
 
-namespace TypeUtility
-{
-  namespace Testing
-  {
-    using std::string;
-    using std::stringstream;
+namespace TypeUtility::Testing{
 
-    template< typename T >
-    string
-    string_repr( const T& arg ){
-      stringstream ss;
-      ss << arg;
-      return ss.str();
-    }
-    
-    
-  } // end of namespace Testing
-} // end of namespace TypeUtility
+  using std::string;
+  using std::stringstream;
+
+  template< typename T >
+  string
+  string_repr( const T& arg ){
+    stringstream ss;
+    ss << arg;
+    return ss.str();
+  }
+
+} // end of namespace TypeUtility::Testing
 
 #endif // !defined TEST_TOOLS_HPP_INCLUDED_482621442056030402

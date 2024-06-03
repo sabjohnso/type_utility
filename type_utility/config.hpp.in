@@ -1,11 +1,11 @@
 #pragma once
 namespace TypeUtility::Config {
 
-  // clang-format-off
+  // clang-format off
   constexpr int major = ${PROJECT_VERSION_MAJOR};
   constexpr int minor = ${PROJECT_VERSION_MINOR};
   constexpr int patch = ${PROJECT_VERSION_PATCH};
-  constexpr bool RTTI_used = ${TYPE_UTILITY_RTTI_USED};
+  constexpr bool RTTI_used = ${type_utility_RTTI_USED};
   // clang-format-on
 
 } // end of namespace TypeUtility::Config

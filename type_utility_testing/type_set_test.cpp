@@ -6,29 +6,16 @@
 //
 // ... Testing header files
 //
-#include <type_utility_testing/test_macros.hpp>
+#include <gtest/gtest.h>
 
+namespace TypeUtility::Core::Testing {
 
-/** UNDOCUMENTED TEST */
-struct Type_set_test
-{
-  Type_set_test() : accum( 0 ) {
-    using namespace TypeUtility::Core;
-
-    TYPE_UTILITY_STATIC_TEST( ! type_set<>.ismember( type<int> ));
-    TYPE_UTILITY_STATIC_TEST( type_set<int>.ismember( type<int> ));
-    TYPE_UTILITY_STATIC_TEST( ismember( type_set<short,int>, type<int> ));
-    TYPE_UTILITY_STATIC_TEST( ismember( type_set<int, short>, type<int> ));
-      
+  TEST(type_utility, type_set)
+  {
+    ASSERT_TRUE(!type_set<>.ismember(type<int>));
+    ASSERT_TRUE(type_set<int>.ismember(type<int>));
+    ASSERT_TRUE(ismember(type_set<short, int>, type<int>));
+    ASSERT_TRUE(ismember(type_set<int, short>, type<int>));
   }
-  operator int() const { return accum; }
-  int accum;
-}; // end of struct Type_set_test
 
-int
-main( int, char** )
-{
-  int accum = 0;
-    
-  return accum;
-}
+} // end of namespace TypeUtility::Core::Testing

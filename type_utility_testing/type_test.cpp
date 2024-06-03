@@ -11,14 +11,12 @@
 namespace // anonymous
 {
   using TypeUtility::Core::Type;
-  
+
 }// end of anonymous namespace
 
-namespace TypeUtility::Testing
-{
+namespace TypeUtility::Testing{
 
-  TEST( Type, Contruction )
-  {
+  TEST( Type, Contruction ){
     constexpr Type<int> tint{};
     EXPECT_TRUE( tint.isfundamental() );
   }

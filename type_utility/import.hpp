@@ -5,10 +5,10 @@
 // ... Standard header files
 //
 #include <cstddef>
+#include <iostream>
 #include <new>
 #include <type_traits>
 #include <utility>
-#include <iostream>
 
 //
 // ... Type Utility header files
@@ -22,18 +22,18 @@ namespace TypeUtility {
     using std::align_val_t;
     using std::conditional_t;
     using std::decay_t;
+
     using std::forward;
     using std::move;
     using std::result_of_t;
     using std::size_t;
 
+    using std::enable_if_t;
     using std::false_type;
+    using std::has_unique_object_representations;
     using std::index_sequence;
     using std::integer_sequence;
     using std::integral_constant;
-    using std::true_type;
-
-    using std::has_unique_object_representations;
     using std::is_abstract;
     using std::is_aggregate;
     using std::is_arithmetic;
@@ -69,6 +69,7 @@ namespace TypeUtility {
     using std::is_unsigned;
     using std::is_void;
     using std::is_volatile;
+    using std::true_type;
 
     using std::has_virtual_destructor;
     using std::is_assignable;

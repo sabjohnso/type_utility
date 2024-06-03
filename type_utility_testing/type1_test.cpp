@@ -3,29 +3,13 @@
 //
 #include <type_utility/type1.hpp>
 
-
 //
 // ... Testing header files
 //
-#include <type_utility_testing/test_macros.hpp>
+#include <gtest/gtest.h>
 
-/** Test type template proxy functionality 
- */
-struct Type1Test
-{
-  Type1Test() : accum( 0 ) {
-    
-  }
-  operator int() const { return accum; }
-  int accum;
-}; // end of struct Type1Test
+namespace TypeUtility::Testing {
 
+  TEST(type_utility, Type1) {}
 
-
-int
-main( int, char** )
-{
-  int accum = 0;
-  accum += Type1Test();
-  return accum;
-}
+} // end of namespace TypeUtility::Testing

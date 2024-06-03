@@ -725,6 +725,7 @@ namespace TypeUtility::Core {
   template<typename T>
   constexpr Type<T> type{};
 
+#ifdef TYPE_UTILITY_USE_RTTI
   /**
    * @brief Inject a printed representation of a type into an output stream
    *
@@ -751,7 +752,7 @@ namespace TypeUtility::Core {
    * all applications
    */
   template<typename T>
-  inline ostream&
+  ostream&
   operator<<(ostream& os, Type<T> const&)
   {
     static_assert(
@@ -762,6 +763,7 @@ namespace TypeUtility::Core {
     os << typeid(T).name();
     return os;
   }
+#endif
 
   /**
    * @brief Given function on plane values and a type proxy, return a type proxy
@@ -829,9 +831,8 @@ namespace TypeUtility::Core {
    * @brief Inject a printed representation of a type proxy for char
    * to an output stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<char> const&)
+  inline ostream&
+  operator<<(ostream& os, Type<char> const&)
   {
     os << "char";
     return os;
@@ -841,9 +842,8 @@ namespace TypeUtility::Core {
    * @brief Inject a printed representation of a type proxy for unsigned char
    * to an output stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<unsigned char> const&)
+  inline ostream&
+  operator<<(ostream& os, Type<unsigned char> const&)
   {
     os << "unsigned char";
     return os;
@@ -853,9 +853,8 @@ namespace TypeUtility::Core {
    * @brief Inject a printed representation of a type proxy for singed char
    * to an output Stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<signed char> const&)
+  inline ostream&
+  operator<<(ostream& os, Type<signed char> const&)
   {
     os << "signed char";
     return os;
@@ -865,9 +864,8 @@ namespace TypeUtility::Core {
    * @brief Inject a printed representation of a type proxy for a wide char
    * (wchar_t) to an output Stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<wchar_t> const&)
+  inline ostream&
+  operator<<(ostream& os, Type<wchar_t> const&)
   {
     os << "wchar_t";
     return os;
@@ -877,9 +875,8 @@ namespace TypeUtility::Core {
    * @brief Inject a printed representation of a type proxy for a unicode
    * character (char16_t) to an output Stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<char16_t> const&)
+  inline ostream&
+  operator<<(ostream& os, Type<char16_t> const&)
   {
     os << "char16_t";
     return os;
@@ -889,9 +886,8 @@ namespace TypeUtility::Core {
    * @brief Inject a printed representation of a type proxy for a unicode
    * character type (char32_t) to an output Stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<char32_t> const&)
+  inline ostream&
+  operator<<(ostream& os, Type<char32_t> const&)
   {
     os << "char32_t";
     return os;
@@ -901,23 +897,10 @@ namespace TypeUtility::Core {
    * @brief Inject a prshorted representation of a type proxy for short
    * to an output Stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<short> const&)
+  inline ostream&
+  operator<<(ostream& os, Type<short> const&)
   {
     os << "short";
-    return os;
-  }
-
-  /**
-   * @brief Inject a printed representation of a type proxy for int
-   * to an output Stream
-   */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<int> const&)
-  {
-    os << "int";
     return os;
   }
 
@@ -936,35 +919,10 @@ namespace TypeUtility::Core {
    * @brief Inject a prlonged representation of a type proxy for long
    * to an output Stream
    */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<long> const&)
-  {
-    os << "long";
-    return os;
-  }
-
-  /**
-   * @brief Inject a prlonged representation of a type proxy for long
-   * to an output Stream
-   */
-
   inline ostream&
   operator<<(ostream& os, Type<long> const&)
   {
     os << "long";
-    return os;
-  }
-
-  /**
-   * @brief Inject a prlong longed representation of a type proxy for long long
-   * to an output Stream
-   */
-  template<typename Stream>
-  Stream&
-  operator<<(Stream& os, Type<long long> const&)
-  {
-    os << "long long";
     return os;
   }
 

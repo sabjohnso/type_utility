@@ -9,28 +9,29 @@
 //
 #include <type_utility/template_sequence.hpp>
 
-namespace // anonymous
-{
+namespace {
+
+
   using TypeUtility::Core::Template_sequence;
 
 
-  
-  class Template_sequence_tester
-  {
+  class Template_sequence_tester {
+
     int accum = {0};
+
   public:
+
     operator int () const { return accum; }
-    Template_sequence_tester(){
 
-    }
+    Template_sequence_tester(){}
+
   }; // end of class Template_sequene_tester
-    
 
-} // end of anonymous namespace 
+} // end of anonymous namespace
+
 
 int
-main( int, char** )
-{
+main( int, char** ){
   int accum = 0;
   accum += Template_sequence_tester{};
   return accum;

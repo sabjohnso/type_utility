@@ -1,16 +1,16 @@
-if(TYPE_UTILITY_USE_RTTI)
-  set(TYPE_UTILITY_RTTI_USED true)
+if(type_utility_USE_RTTI)
+  set(type_utility_RTTI_USED true)
 else()
-  set(TYPE_UTILITY_RTTI_USED false)
+  set(type_utility_RTTI_USED false)
 endif()
 
 configure_file(config.hpp.in config.hpp)
 
 install(
-  TARGETS ${TYPE_UTILITY_CONFIG_NAME}
+  TARGETS ${type_utility_CONFIG_NAME}
   EXPORT type_utility
-  DESTINATION ${TYPE_UTILITY_INSTALL_EXEC_DIR} )
-
+  DESTINATION ${type_utility_INSTALL_EXEC_DIR}
+)
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
@@ -30,8 +30,5 @@ install(FILES
   partial_template.hpp
   type_utility.hpp
   value.hpp
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/type_utility)
-
-
-
-
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/type_utility
+)

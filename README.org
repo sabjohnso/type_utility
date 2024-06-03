@@ -5,3 +5,15 @@
 
 * Overview
   Tools for working with types in modern C++
+
+* Known issues
+** C++23, GCC and Catch2 v3.40
+The Catch2 testing framework does not compile with gcc 12 or 13  using
+cxx_std_23. As a work-around configure with C++20.  This is an issue
+between GCC and Catch2 and does not reflect problems with this library.
+
+As a work-around configure with C++ 20 instead of C++ 23
+#+caption: configuring with C++20
+#+begin_src bash
+  cmake -Dtype_utility_COMPILE_FEATURES=cxx_std_20 <type_utility_source_dir>
+#+end_src
