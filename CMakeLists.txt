@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.22)
 
 project(type_utility VERSION 0.3.1 LANGUAGES CXX)
 
-set(type_utility_COMPILE_FEATURES cxx_std_23)
+set(type_utility_COMPILE_FEATURES cxx_std_20)
 list(INSERT CMAKE_MODULE_PATH 0 ${type_utility_SOURCE_DIR}/cmake)
 
 include(type_utility_deps)
